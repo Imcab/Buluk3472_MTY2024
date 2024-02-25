@@ -6,8 +6,11 @@ import frc.robot.Subsystems.subpiston;
 public class compiston extends Command{
     subpiston piston;
 
-    public compiston(){
-       
+    public compiston(subpiston piston){
+
+       this.piston = piston;
+
+       addRequirements(piston);
     }
 
     @Override
@@ -22,7 +25,7 @@ public class compiston extends Command{
 
     @Override
     public void end(boolean interrupted) {
-     piston.Reverse();
+        piston.Reverse();
     }
 
     @Override

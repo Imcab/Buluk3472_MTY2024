@@ -26,16 +26,16 @@ public class AngleSet extends Command{
 
 
     @Override
-    public void  execute(){
+    public void execute(){
         double Y = sublimelight.getY(); //Como accesar a static variables?
         boolean TargetAvaliable = sublimelight.isTargetAvalible();
 
         if (TargetAvaliable == true){
 
             if (Y < 0.0){ //Cambiar en referencia a la altitud en que este el verdadero objetivo
-                outake.setposspeed(0.3);
+                outake.setposspeed(0.1);
             } else if (Y > 0.0){
-                outake.setposspeed(-0.3);
+                outake.setposspeed(-0.1);
             } else{
                 outake.setposspeed(0.0);
             }

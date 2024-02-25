@@ -1,7 +1,8 @@
 package frc.robot.Subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
@@ -14,21 +15,21 @@ public class subpos extends SubsystemBase{
     private int poutid = outakeconst.posoutid;
     private int poutid2 = outakeconst.posoutid2;
 
-    DigitalInput aa = new DigitalInput(0);
-    DigitalInput bb = new DigitalInput(1);
-    DigitalInput cc = new DigitalInput(2);
+    Encoder encoder2;
 
-    private Encoder encoderBore;
-       //double encoder_value;
+
 
     public subpos(){
         posout1 = new CANSparkMax(poutid, MotorType.kBrushless);
         posout2 = new CANSparkMax(poutid2, MotorType.kBrushless);
-        encoderBore = new Encoder(aa, bb,cc);
+
+        encoder2 = new Encoder(1,2,true, CounterBase.EncodingType.k4X);
+
+        encoder2.setDistancePerPulse(4.0/256.0);
+        encoder2.setMinRate(10);
+        encoder2.setSamplesToAverage(5);
 
     }
-
-
 
    /*   public void angulo1(){
 
@@ -66,19 +67,21 @@ public class subpos extends SubsystemBase{
 
     @Override
     public void periodic(){
+        
+        
+        
+        double encoder2_value = ((encoder2.getDistance()/4096)*360); 
 
-        encoderBore.setDistancePerPulse(4/256);
 
-        double encoder_value = ((encoderBore.getDistance()/4096)*360); 
-    
+        SmartDashboard.putNumber("encoder2", encoder2.getRate());
+        SmartDashboard.putNumber("encoder2Distance", encoder2.getDistancePerPulse());
+        SmartDashboard.putNumber("encoder2Rate", encoder2.getRate());
+        SmartDashboard.putNumber("encoder_value", encoder2_value);
 
-        SmartDashboard.putNumber("Encoder bore Encoder Encoder externo Encoder Absoluto", encoder_value);
-        //SmartDashboard.putNumber("dd", encoderBore.getDistance());
 
-       
-    
+ 
+        
     }
-
         public void setposspeed(double oposspeed){
             posout1.set(oposspeed);
             posout2.set(-oposspeed);

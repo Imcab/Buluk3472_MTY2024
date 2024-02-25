@@ -17,4 +17,7 @@ public class subpiston extends SubsystemBase{
     public void Reverse(){
         Piston.set(DoubleSolenoid.Value.kReverse);
     }   
+    public void Toggle(){
+        Piston.toggle();
+    }
 }
