@@ -15,11 +15,10 @@ public final class constants {
         public static final int m_intake = 11;
         public static final int m_index = 9;
 
-        //piston
+        //pistón
         public static final int sforwardchn = 1;
         public static final int sreversedchn = 2;
   
-
     }
 
     public static final class outakeconst{

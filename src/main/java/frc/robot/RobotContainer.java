@@ -1,24 +1,21 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Commands.Automiddle;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
+import frc.robot.Commands.compiston;
 import frc.robot.Commands.composout;
 import frc.robot.Commands.conmecos;
 import frc.robot.Subsystems.subindex;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.submecos;
 import frc.robot.Subsystems.suboutake;
+import frc.robot.Subsystems.subpiston;
 import frc.robot.Subsystems.subpos;
 
 public class RobotContainer {
@@ -33,11 +30,11 @@ public class RobotContainer {
 
   private final subindex index = new subindex();
 
+  private final subpiston piston = new subpiston();
 
   public XboxController driverjoytick = new XboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
  
-
   public RobotContainer() {
 
     mecosmodule.setDefaultCommand(new conmecos(mecosmodule,
@@ -63,12 +60,6 @@ public class RobotContainer {
     
     });
 
-    /*index.setDefaultCommand(new comindex(index,
-
-      ()-> mechjoytick.getRawAxis(5)) {
-      
-    });   */
-
     configureBindings(); 
 
   }
@@ -77,23 +68,20 @@ public class RobotContainer {
 
     mechjoytick.x().toggleOnTrue(new comindex(index, 0.5)); 
 
-    mechjoytick.a().toggleOnTrue(new comintake(intake, 0.8));
+    mechjoytick.a().toggleOnTrue(new ParallelCommandGroup(new comintake(intake, 0.8), new compiston()));
 
-    mechjoytick.y().whileTrue(new ParallelCommandGroup(new InstantCommand(()-> intake.reversed()), new comindex(index, -0.5)));
+    mechjoytick.y().whileTrue(new ParallelCommandGroup(new comintake(intake, -0.9), new comindex(index, -0.5)));
   
-    mechjoytick.start().toggleOnTrue(new InstantCommand(()-> intake.stop()));
+    mechjoytick.start().toggleOnTrue(new comintake(intake, 0));
 
-    mechjoytick.b().whileTrue(new InstantCommand(()-> intake.forward()));
+    mechjoytick.b().whileTrue(new comintake(intake, 1));
 
-    //mechjoytick.leftBumper().onTrue(new InstantCommand(()-> subpos.angulo1()));
-
-    
-
-
+   // mechjoytick.leftBumper().whileTrue(new InstantCommand(()-> posoutake.angulo1()));
     
   }
-
+  
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
   }
+  
 }

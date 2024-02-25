@@ -23,13 +23,11 @@ public class comintake extends Command{
     @Override
     public void execute(){
         intake.velocities(speed);
-        intake.pistonact();
     }
 
     @Override
     public void end(boolean interrupted) {
         intake.velocities(0);
-        intake.pistoninit();
     }
 
     @Override

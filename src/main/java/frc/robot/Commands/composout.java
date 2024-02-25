@@ -26,7 +26,7 @@ public class composout extends Command{
 
         double speedpos = posspeed.get();
 
-        posoutake.setposspeed(speedpos * 0.85);
+        posoutake.setposspeed(speedpos * 0.1);
     }
 
     @Override
