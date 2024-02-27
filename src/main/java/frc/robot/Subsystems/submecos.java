@@ -94,8 +94,8 @@ public class submecos extends SubsystemBase{
     public void auto (double speedder, double speedizq){
         FrentIzq.set(-speedizq);
         FrentDer.set(speedder);
-        AtrasIzq.set(speedizq);
-        AtrasDer.set(speedder);
+        AtrasIzq.set(-speedizq);
+        AtrasDer.set(speedder);     
     }
 
     @Override

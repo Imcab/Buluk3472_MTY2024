@@ -10,6 +10,7 @@ import frc.robot.Commands.AngleSet;
 import frc.robot.Commands.Auto_test;
 import frc.robot.Commands.Autoleft;
 import frc.robot.Commands.Automiddle;
+import frc.robot.Commands.Autoright;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
@@ -47,7 +48,8 @@ public class RobotContainer {
 
    private final Command Automiddle = new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
   private final Command Autoleft = new Autoleft(mecosmodule, posoutake, index, intake, piston, moutake);
-  private final Command Auto_test = new Auto_test(mecosmodule);
+  private final Command Auto_test = new Auto_test(mecosmodule, index, intake, moutake, posoutake, piston);
+  private final Command Auto_right = new Autoright(mecosmodule, intake, index, moutake, posoutake, piston);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -56,6 +58,7 @@ public class RobotContainer {
     m_chooser.addOption("Auto Middle position", Automiddle);
     m_chooser.addOption("Auto left position", Autoleft);
     m_chooser.addOption("Auto test", Auto_test);
+    m_chooser.addOption("Auto right", Auto_right);
     SmartDashboard.putData(m_chooser);
 
     mecosmodule.setDefaultCommand(new conmecos(mecosmodule,

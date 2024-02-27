@@ -62,10 +62,10 @@ public class Automiddle extends Command {
 
 
       }
-      /* else if (mytime>1 && mytime<3){ //avanza atras 92 cm y toma pieza
+       else if (mytime>1 && mytime<3){ //avanza atras 92 cm y toma pieza
         posoutake.setposspeed(0);
         moutake.setoutakespeed(0);
-        index.setindexspeed(0); 
+        index.setindexspeed(0); }
 
         /* mecosmodule.auto(-0.5,-0.5);
        // piston.forward();
