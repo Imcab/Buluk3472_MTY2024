@@ -46,22 +46,14 @@ public class Autoright extends Command {
       mytime = (System.currentTimeMillis() - starttime)/1000;
       System.out.println("mytime"+mytime);
 
-      if (mytime>0.0 && mytime<1){
-
-        
-
-
-
-      }
-
-
-
-
-
-
-
-
+      if (mytime>0.0 && mytime<1){    }
 
     }
+
+    @Override
+    public boolean isFinished(){
+          
+          return false;
+      }
 
 }

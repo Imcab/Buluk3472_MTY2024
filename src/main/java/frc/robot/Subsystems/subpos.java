@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.constants.outakeconst;
 
@@ -16,6 +17,9 @@ public class subpos extends SubsystemBase{
     private int poutid2 = outakeconst.posoutid2;
 
     Encoder encoder2;
+
+    private RelativeEncoder otroencoder1;
+    private RelativeEncoder otroencoder2;
 
 
 
@@ -28,6 +32,10 @@ public class subpos extends SubsystemBase{
         encoder2.setDistancePerPulse(4.0/256.0);
         encoder2.setMinRate(10);
         encoder2.setSamplesToAverage(5);
+
+        otroencoder1 = posout1.getEncoder();
+        otroencoder2 = posout2.getEncoder();
+    
 
     }
 
@@ -63,7 +71,11 @@ public class subpos extends SubsystemBase{
     }*/
 
 
-     
+
+    /*    public void egoder(){
+        otroencoder1.setPosition(0);
+        otroencoder2.setPosition(0);
+     } */
 
     @Override
     public void periodic(){
@@ -78,6 +90,9 @@ public class subpos extends SubsystemBase{
         SmartDashboard.putNumber("encoder2Rate", encoder2.getRate());
         SmartDashboard.putNumber("encoder_value", encoder2_value);
 
+        SmartDashboard.putNumber("Encoder outake 1", otroencoder1.getPosition());
+        SmartDashboard.putNumber("Encoder outake 2", otroencoder2.getPosition());
+
 
  
         
@@ -87,6 +102,8 @@ public class subpos extends SubsystemBase{
             posout2.set(-oposspeed);
         }
 
+
+        
 
 
 

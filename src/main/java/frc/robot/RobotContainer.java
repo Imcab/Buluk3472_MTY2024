@@ -1,15 +1,20 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.AngleSet;
+import frc.robot.Commands.Auto_test;
+import frc.robot.Commands.Autoleft;
 import frc.robot.Commands.Automiddle;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
-import frc.robot.Commands.compiston;
+import frc.robot.Commands.pistonforward;
+import frc.robot.Commands.pistonreverse;
 import frc.robot.Commands.composout;
 import frc.robot.Commands.conmecos;
 import frc.robot.Subsystems.subindex;
@@ -39,8 +44,19 @@ public class RobotContainer {
 
   public XboxController driverjoytick = new XboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
+
+   private final Command Automiddle = new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
+  private final Command Autoleft = new Autoleft(mecosmodule, posoutake, index, intake, piston, moutake);
+  private final Command Auto_test = new Auto_test(mecosmodule);
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
   public RobotContainer() {
+
+    m_chooser.addOption("Auto Middle position", Automiddle);
+    m_chooser.addOption("Auto left position", Autoleft);
+    m_chooser.addOption("Auto test", Auto_test);
+    SmartDashboard.putData(m_chooser);
 
     mecosmodule.setDefaultCommand(new conmecos(mecosmodule,
 
@@ -79,14 +95,14 @@ public class RobotContainer {
   
     mechjoytick.start().toggleOnTrue(new comintake(intake, 0));
 
-    mechjoytick.b().toggleOnTrue(new compiston(piston));
-
-   // mechjoytick.leftBumper().whileTrue(new InstantCommand(()-> posoutake.angulo1()));
+    mechjoytick.rightBumper().whileTrue(new pistonforward(piston));
+    
+    mechjoytick.leftBumper().whileTrue(new pistonreverse(piston));
     
   }
   
   public Command getAutonomousCommand() {
-    return new AngleSet(sublimelight);
+    return m_chooser.getSelected();
   }
   
 }
