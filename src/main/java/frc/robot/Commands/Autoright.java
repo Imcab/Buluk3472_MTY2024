@@ -50,6 +50,7 @@ public class Autoright extends Command {
       if (mytime>0 && mytime<1){ // alza brazo, carga outake
         moutake.setoutakespeed(0.95);
         posoutake.setposspeed(-0.08);
+        piston.forward();
       }
 
       else if (mytime> 1 && mytime<1.5){ //apaga angulo
@@ -104,6 +105,7 @@ public class Autoright extends Command {
         index.setindexspeed(0);
         moutake.setoutakespeed(0);
         intake.velocities(0);
+        piston.Reverse();
       }
 
 
