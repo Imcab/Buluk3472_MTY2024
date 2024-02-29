@@ -1,4 +1,4 @@
-/*package frc.robot.Subsystems;
+package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
@@ -11,16 +11,23 @@ public class subcolgador extends SubsystemBase {
     private int Idcolg = colgConst.colgId;
     private int Idcolg2 = colgConst.colg2Id;
 
-    public subcolgador(int Idcolg, int Idcolg2){
+    public subcolgador(){
         colgador1 = new CANSparkMax(Idcolg, MotorType.kBrushless);
         colgador2 = new CANSparkMax(Idcolg2, MotorType.kBrushless);
 
     }
 
-    public void subircolg(){
-        colgador1.set(0);
-        colgador2.set(0);
+    public void speed(double speed){
+        colgador1.set(speed);
+        colgador2.set(speed);
     }
 
+    @Override
+    public void periodic(){
+        
+    }
+
+        
+
     
-} */
+} 

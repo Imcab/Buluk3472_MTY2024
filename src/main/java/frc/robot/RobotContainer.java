@@ -11,6 +11,7 @@ import frc.robot.Commands.Auto_test;
 import frc.robot.Commands.Autoleft;
 import frc.robot.Commands.Automiddle;
 import frc.robot.Commands.Autoright;
+import frc.robot.Commands.colgcommd;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
@@ -18,6 +19,7 @@ import frc.robot.Commands.pistonforward;
 import frc.robot.Commands.pistonreverse;
 import frc.robot.Commands.composout;
 import frc.robot.Commands.conmecos;
+import frc.robot.Subsystems.subcolgador;
 import frc.robot.Subsystems.subindex;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.sublimelight;
@@ -42,8 +44,10 @@ public class RobotContainer {
   private final subpiston piston = new subpiston();
 
   private final sublimelight sublimelight = new sublimelight();
+  
+  private final subcolgador colgador = new subcolgador();
 
-  public XboxController driverjoytick = new XboxController(0);
+  public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
    private final Command Automiddle = new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
@@ -101,6 +105,10 @@ public class RobotContainer {
     mechjoytick.rightBumper().whileTrue(new pistonforward(piston));
     
     mechjoytick.leftBumper().whileTrue(new pistonreverse(piston));
+
+    driverjoytick.rightBumper().whileTrue(new colgcommd(colgador, 0.5));
+
+    driverjoytick.leftBumper().whileTrue(new colgcommd(colgador, -0.5));
     
   }
   

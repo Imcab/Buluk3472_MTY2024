@@ -36,9 +36,9 @@ public final class constants {
 
     }
 
-    /*public static final class colgConst{
+    public static final class colgConst{
         public static final int colgId = 10;
         public static final int colg2Id = 11;
-    } */
+    } 
     
 }

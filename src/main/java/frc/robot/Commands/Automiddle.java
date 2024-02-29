@@ -48,11 +48,13 @@ public class Automiddle extends Command {
       System.out.println("mytime"+mytime);
 
 
-      if (mytime>0.0 && mytime<0.9){ // alza brazo, carga outake
-        posoutake.setposspeed(-0.08);
+      if (mytime>0.0 && mytime<1){ // alza brazo, carga outake
         moutake.setoutakespeed(0.95);
+        posoutake.setposspeed(-0.08);
+        //piston.Reverse();
+        
 
-      } else if (mytime> 0.9 && mytime<2){ //apaga angulo
+      } else if (mytime> 1 && mytime<2){ //apaga angulo
         posoutake.setposspeed(0);
 
 
@@ -62,58 +64,40 @@ public class Automiddle extends Command {
 
 
       }
-       else if (mytime>1 && mytime<3){ //avanza atras 92 cm y toma pieza
-        posoutake.setposspeed(0);
-        moutake.setoutakespeed(0);
-        index.setindexspeed(0); }
 
-        /* mecosmodule.auto(-0.5,-0.5);
-       // piston.forward();
-       // intake.velocities(0.9);
+      else if (mytime>2.5 && mytime<4.5){
+        mecosmodule.auto(0.11,0.1); //3.16 metros a 1  5 seg
+        intake.velocities(0.9);
+        piston.forward();
 
-
-      } else if (mytime>4 && mytime<4.5){ //parar y cargar outake
-       // intake.velocities(0);
-        //piston.Reverse();
-        mecosmodule.auto(0, 0);
-        moutake.setoutakespeed(0.4);
+      } else if (mytime>4.5 && mytime<4.7){
+        mecosmodule.auto(-0.31,-0.3);
+        moutake.setoutakespeed(0.95);
     
-      } else if (mytime>4.5 && mytime<6.5){ // avanzar a posicion inicial
-
-        mecosmodule.auto(0.5,0.5);
-
-      } else if (mytime>6.5 && mytime<8){ // lanzar 2da pieza
-
-        mecosmodule.auto(0.0,0.0);
-        index.setindexspeed(0.5);  
+      }
+       else if (mytime>4.7 && mytime<6.7){
+        mecosmodule.auto(-0.11,-0.1); //3.16 metros a 1  5 seg
+        intake.velocities(0.9);
       
-      } else if (mytime>8 && mytime<8.6){ // atras 72 cm
-        mecosmodule.auto(-0.5,-0.5);
+      }
 
-
-      } else if (mytime>8.6 && mytime<9){ // rotar derecha
-        mecosmodule.auto(-0.5,0.3);
-
-      }  else if (mytime>9 && mytime<10){ // atras 145 cm
-        mecosmodule.auto(-0.5,-0.5);
-        // intake.velocities(0.9);
-        //piston.forward();
-
-      }  else if (mytime>10 && mytime<11){ // parar alinear y cargar outake
+        
+        else if (mytime>6.7 && mytime<8){ //lanza
+  
         mecosmodule.auto(0.0,0.0);
-        moutake.setoutakespeed(0.4);
-        posoutake.setposspeed(-0.05);
         
-      } else if (mytime>11 && mytime<12){ // lanzar
-        index.setindexspeed(0.5);
+        index.setindexspeed(0.6);
+
+      } else  if(mytime>8 && mytime<12){
+        mecosmodule.auto(0.11,0.1);
         
-      } else {
-        intake.velocities(0);
-       // piston.Reverse();
-        mecosmodule.auto(0, 0);
-        posoutake.setposspeed(0);
+
+      }else{
+        index.setindexspeed(0);
         moutake.setoutakespeed(0);
-        */
+        intake.velocities(0);
+        piston.Reverse();
+      }
       }
 
 
