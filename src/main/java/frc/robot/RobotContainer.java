@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.Commands.AngleSet;
-import frc.robot.Commands.Auto_test;
 import frc.robot.Commands.Autoleft;
 import frc.robot.Commands.Automiddle;
 import frc.robot.Commands.Autoright;
@@ -22,12 +20,11 @@ import frc.robot.Commands.conmecos;
 import frc.robot.Subsystems.subcolgador;
 import frc.robot.Subsystems.subindex;
 import frc.robot.Subsystems.subintake;
-import frc.robot.Subsystems.sublimelight;
 import frc.robot.Subsystems.submecos;
 import frc.robot.Subsystems.suboutake;
 import frc.robot.Subsystems.subpiston;
 import frc.robot.Subsystems.subpos;
-import frc.robot.Subsystems.sublimelight;
+
 
 public class RobotContainer {
 
@@ -43,26 +40,25 @@ public class RobotContainer {
 
   private final subpiston piston = new subpiston();
 
-  private final sublimelight sublimelight = new sublimelight();
+
   
   private final subcolgador colgador = new subcolgador();
 
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
-   private final Command Automiddle = new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
+  private final Command Automiddle = new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
   private final Command Autoleft = new Autoleft(mecosmodule, posoutake, index, intake, piston, moutake);
-  private final Command Auto_test = new Auto_test(mecosmodule, index, intake, moutake, posoutake, piston);
   private final Command Auto_right = new Autoright(mecosmodule, intake, index, moutake, posoutake, piston);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
   public RobotContainer() {
 
-    m_chooser.addOption("Auto Middle position", Automiddle);
-    m_chooser.addOption("Auto left position", Autoleft);
-    m_chooser.addOption("Auto test", Auto_test);
+    m_chooser.addOption("Auto Middle", Automiddle);
+    m_chooser.addOption("Auto left", Autoleft);
     m_chooser.addOption("Auto right", Auto_right);
+   
     SmartDashboard.putData(m_chooser);
 
     mecosmodule.setDefaultCommand(new conmecos(mecosmodule,
@@ -106,9 +102,9 @@ public class RobotContainer {
     
     mechjoytick.leftBumper().whileTrue(new pistonreverse(piston));
 
-    driverjoytick.rightBumper().whileTrue(new colgcommd(colgador, 0.5));
+    driverjoytick.rightBumper().whileTrue(new colgcommd(colgador, 0.7));
 
-    driverjoytick.leftBumper().whileTrue(new colgcommd(colgador, -0.5));
+    driverjoytick.leftBumper().whileTrue(new colgcommd(colgador, -0.7));
     
   }
   

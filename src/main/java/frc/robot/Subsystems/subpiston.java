@@ -1,6 +1,5 @@
 package frc.robot.Subsystems;
 
-import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -33,6 +32,7 @@ public class subpiston extends SubsystemBase{
 
     @Override
     public void periodic(){
+        
         double drawn = compressor.getCurrent();
         double pressure = compressor.getPressure();
   

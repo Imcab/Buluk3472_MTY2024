@@ -2,7 +2,6 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.subcolgador;
-import frc.robot.Subsystems.subindex;
 
 public class colgcommd extends Command{
     subcolgador colgador;

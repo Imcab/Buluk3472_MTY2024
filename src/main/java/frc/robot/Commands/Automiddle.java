@@ -60,8 +60,6 @@ public class Automiddle extends Command {
 
       } else if (mytime> 2 && mytime<2.5){ //lanza pieza
         index.setindexspeed(0.6);
-    
-
 
       }
 
@@ -69,27 +67,25 @@ public class Automiddle extends Command {
         mecosmodule.auto(0.11,0.1); //3.16 metros a 1  5 seg
         intake.velocities(0.9);
         piston.forward();
+        index.setindexspeed(0);
 
-      } else if (mytime>4.5 && mytime<4.7){
+      } else if (mytime>4.5 && mytime<4.7){ //freno
         mecosmodule.auto(-0.31,-0.3);
         moutake.setoutakespeed(0.95);
     
       }
-       else if (mytime>4.7 && mytime<6.7){
+       else if (mytime>4.7 && mytime<6.7){ //vuelve a pósicion inicial
         mecosmodule.auto(-0.11,-0.1); //3.16 metros a 1  5 seg
         intake.velocities(0.9);
       
       }
 
-        
         else if (mytime>6.7 && mytime<8){ //lanza
-  
         mecosmodule.auto(0.0,0.0);
-        
         index.setindexspeed(0.6);
 
-      } else  if(mytime>8 && mytime<12){
-        mecosmodule.auto(0.11,0.1);
+      } else  if(mytime>8 && mytime<12){//Sale de la linea
+        mecosmodule.auto(0.11,0.1); 
         
 
       }else{

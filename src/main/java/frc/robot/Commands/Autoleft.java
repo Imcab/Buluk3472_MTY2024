@@ -46,54 +46,88 @@ public class Autoleft extends Command {
       mytime = (System.currentTimeMillis() - starttime)/1000;
       System.out.println("mytime"+mytime);
 
-       mecosmodule.auto(0, 0);
-        index.setindexspeed(0.5);
+       
+      if (mytime>0 && mytime<1){ // alza brazo, carga outake
+        moutake.setoutakespeed(0.95);
+        posoutake.setposspeed(-0.08);
+        piston.forward();
+      }
 
-      if (mytime>0.0 && mytime<1){ // alza brazo, carga outake
-        posoutake.setposspeed(0.1);
-        moutake.setoutakespeed(0.4);
-  
-      } else if (mytime>1 && mytime<2){ //prende index y lanza
-        index.setindexspeed(0.5);  
-        //piston.Reverse();
-
-      } else if (mytime>2 && mytime<3){ // atras 40 cm 
-        index.setindexspeed(0.0);
-        mecosmodule.auto(-0-5, -0.5);
-  
-      }  else if (mytime>3 && mytime<3.5){ // rotar izquierda quedar alineado con la siguiente pieza
-        index.setindexspeed(0.0);
-        mecosmodule.auto(0.3, -0.5);
-  
-      } else if (mytime>3.5 && mytime<5.5){ // atras 140 cm
-        index.setindexspeed(0.0);
-        mecosmodule.auto(0, 0);
-        //piston.forward();
-        //intake.velocities(0.9);
-  
-      } else if (mytime>3 && mytime<3.5){ // rotar derecha quedar alineado con objetivo
-        index.setindexspeed(0.0);
-        mecosmodule.auto(-0.3, 0.5);
-  
-      } else if (mytime>5.5 && mytime<6){ // alinea brazo, carga outake
-        posoutake.setposspeed(-0.1);
-        moutake.setoutakespeed(0.4);
-  
-      } else if (mytime>6 && mytime<7){ // lanza
-        posoutake.setposspeed(-0.1);
-        moutake.setoutakespeed(0.4);
-  
-      } else {
-        intake.velocities(0);
-       // piston.Reverse();
-        mecosmodule.auto(0, 0);
+      else if (mytime> 1 && mytime<1.5){ // apaga angulo
+        moutake.setoutakespeed(0.95);
         posoutake.setposspeed(0);
+      }
+
+      else if (mytime> 1.5 && mytime<2.5){ //lanza pieza
+        index.setindexspeed(0.6);
+        moutake.setoutakespeed(0.95);
+      }
+ 
+      else if (mytime>2.5 && mytime<3.5){  //rota a la derecha y baja, prende intake
+        mecosmodule.auto(0.1,0.6); 
         moutake.setoutakespeed(0);
+        index.setindexspeed(0);
+        intake.velocities(0.9);
+
+        piston.forward();
+      
+      }
+
+      else if (mytime>3.5 && mytime<4.8){ //avanza para atras poquito
+      mecosmodule.auto(0.21,0.2); 
+      intake.velocities(0.9);
         
       }
+      else if (mytime>4.8 && mytime<5.0){//freno
+      mecosmodule.auto(-0.41,-0.4); 
+  
+    }
+     else if (mytime>5.0 && mytime<5.5) { //para y toma pieza
+      mecosmodule.auto(0, 0);
+     }
 
+    else if (mytime>5.5 && mytime<5.8){ //avanza para adelante
+      mecosmodule.auto(-0.21,-0.2); 
+    
+    }
+
+      else if (mytime>5.8 && mytime<7.3){ //regresa a posicion inicial, carga outake
+      mecosmodule.auto(-0.1,-0.6); 
+      moutake.setoutakespeed(0.95);
+       
       }
 
+      else if (mytime>7.3 && mytime<9){ //  lanza 2da pieza
+      index.setindexspeed(0.6);
+      intake.velocities(0.0);
+      }
+
+      else if (mytime>9 && mytime<9.5){ //se acomoda para salir
+      index.setindexspeed(0.0);
+      mecosmodule.auto(0.1,0.6); 
+      }
+
+      else if (mytime>9.5 && mytime<11.5) { // Sale de linea
+      mecosmodule.auto(0.11, 0.1);
+     }
+
+      else{
+
+        mecosmodule.auto(0.0,0.0);
+        index.setindexspeed(0);
+        moutake.setoutakespeed(0);
+        intake.velocities(0);
+        piston.Reverse();
+      }
+
+
+      
+
+
+
+  
+    
+    }
       @Override
       public boolean isFinished(){
           
