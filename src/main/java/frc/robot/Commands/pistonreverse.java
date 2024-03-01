@@ -16,7 +16,7 @@ public class pistonreverse extends Command{
     @Override
     public void initialize(){
         
-         piston.Reverse();
+        piston.Reverse();
     }
 
     @Override

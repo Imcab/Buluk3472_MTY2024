@@ -48,43 +48,44 @@ public class Automiddle extends Command {
       System.out.println("mytime"+mytime);
 
 
-      if (mytime>0.0 && mytime<1){ // alza brazo, carga outake
+      if (mytime>0 && mytime<1){ // alza brazo, carga outake
         moutake.setoutakespeed(0.95);
         posoutake.setposspeed(-0.08);
-        //piston.Reverse();
-        
-
-      } else if (mytime> 1 && mytime<2){ //apaga angulo
-        posoutake.setposspeed(0);
-
-
-      } else if (mytime> 2 && mytime<2.5){ //lanza pieza
-        index.setindexspeed(0.6);
-
+        piston.forward();
       }
 
-      else if (mytime>2.5 && mytime<4.5){
+      else if (mytime> 1 && mytime<1.5){ // apaga angulo
+        moutake.setoutakespeed(0.95);
+        posoutake.setposspeed(0);
+      }
+
+      else if (mytime> 1.5 && mytime<2.5){ //lanza pieza
+        index.setindexspeed(0.6);
+        moutake.setoutakespeed(0.95);
+      }
+
+      else if (mytime>2.5 && mytime<5){
         mecosmodule.auto(0.11,0.1); //3.16 metros a 1  5 seg
         intake.velocities(0.9);
-        piston.forward();
         index.setindexspeed(0);
 
-      } else if (mytime>4.5 && mytime<4.7){ //freno
+      } else if (mytime>5 && mytime<5.2){ //freno
         mecosmodule.auto(-0.31,-0.3);
         moutake.setoutakespeed(0.95);
     
       }
-       else if (mytime>4.7 && mytime<6.7){ //vuelve a pósicion inicial
+
+       else if (mytime>5.2 && mytime<7.7){ //vuelve a pósicion inicial
         mecosmodule.auto(-0.11,-0.1); //3.16 metros a 1  5 seg
         intake.velocities(0.9);
       
       }
 
-        else if (mytime>6.7 && mytime<8){ //lanza
+        else if (mytime>7.7 && mytime<9){ //lanza
         mecosmodule.auto(0.0,0.0);
         index.setindexspeed(0.6);
 
-      } else  if(mytime>8 && mytime<12){//Sale de la linea
+      } else  if(mytime>9 && mytime<12){//Sale de la linea
         mecosmodule.auto(0.11,0.1); 
         
 
@@ -92,7 +93,7 @@ public class Automiddle extends Command {
         index.setindexspeed(0);
         moutake.setoutakespeed(0);
         intake.velocities(0);
-        piston.Reverse();
+        
       }
       }
 

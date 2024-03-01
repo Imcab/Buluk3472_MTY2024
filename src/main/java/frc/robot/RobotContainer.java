@@ -102,9 +102,9 @@ public class RobotContainer {
     
     mechjoytick.leftBumper().whileTrue(new pistonreverse(piston));
 
-    driverjoytick.rightBumper().whileTrue(new colgcommd(colgador, 0.7));
+    driverjoytick.rightBumper().whileTrue(new colgcommd(colgador, 1.0));
 
-    driverjoytick.leftBumper().whileTrue(new colgcommd(colgador, -0.7));
+    driverjoytick.leftBumper().whileTrue(new colgcommd(colgador, -1.0));
     
   }
   

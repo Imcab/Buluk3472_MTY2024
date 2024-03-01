@@ -63,31 +63,35 @@ public class Autoright extends Command {
         moutake.setoutakespeed(0.95);
       }
  
-      else if (mytime>2.5 && mytime<3.5){  //rota a la izquierda y baja, prende intake
+      else if (mytime>2.5 && mytime<3.3){  //rota a la izquierda y baja, prende intake
         mecosmodule.auto(0.6,0.1); 
-        moutake.setoutakespeed(0);
+        moutake.setoutakespeed(0.95);
         index.setindexspeed(0);
         intake.velocities(0.9);
 
-        piston.forward();
+        
       
       }
 
-      else if (mytime>3.5 && mytime<4.8){ //avanza para atras poquito
+      else if (mytime>3.3 && mytime<3.8){ //avanza para atras poquito
+      moutake.setoutakespeed(0.95);
       mecosmodule.auto(0.21,0.2); 
       intake.velocities(0.9);
         
       }
-      else if (mytime>4.8 && mytime<5.0){//freno
+      else if (mytime>3.8 && mytime<5.0){//freno
+      moutake.setoutakespeed(0.95);
       mecosmodule.auto(-0.41,-0.4); 
   
     }
      else if (mytime>5.0 && mytime<5.5) { //para y toma pieza
       mecosmodule.auto(0, 0);
+      moutake.setoutakespeed(0.95);
      }
 
     else if (mytime>5.5 && mytime<5.8){ //avanza para adelante
-      mecosmodule.auto(-0.21,-0.2); 
+      mecosmodule.auto(-0.21,-0.2);
+      moutake.setoutakespeed(0.95);
     
     }
 
@@ -100,15 +104,18 @@ public class Autoright extends Command {
       else if (mytime>7.3 && mytime<9){ //  lanza 2da pieza
       index.setindexspeed(0.6);
       intake.velocities(0.0);
+      moutake.setoutakespeed(0.95);
       }
 
       else if (mytime>9 && mytime<9.5){ //se acomoda para salir
       index.setindexspeed(0.0);
       mecosmodule.auto(0.6,0.1); 
+      moutake.setoutakespeed(0.95);
       }
 
       else if (mytime>9.5 && mytime<11.5) { // Sale de linea
       mecosmodule.auto(0.11, 0.1);
+      moutake.setoutakespeed(0.95);
      }
 
       else{
@@ -117,7 +124,7 @@ public class Autoright extends Command {
         index.setindexspeed(0);
         moutake.setoutakespeed(0);
         intake.velocities(0);
-        piston.Reverse();
+        
       }
 
 
