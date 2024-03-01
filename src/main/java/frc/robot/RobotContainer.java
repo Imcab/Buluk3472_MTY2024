@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.Autoleft;
 import frc.robot.Commands.Automiddle;
 import frc.robot.Commands.Autoright;
+import frc.robot.Commands.autista;
 import frc.robot.Commands.colgcommd;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
@@ -51,13 +52,16 @@ public class RobotContainer {
   private final Command Autoleft = new Autoleft(mecosmodule, posoutake, index, intake, piston, moutake);
   private final Command Auto_right = new Autoright(mecosmodule, intake, index, moutake, posoutake, piston);
 
+  private final Command autista = new autista(mecosmodule, posoutake, index, intake, piston, moutake);
+
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
   public RobotContainer() {
 
-    m_chooser.addOption("Auto Middle", Automiddle);
-    m_chooser.addOption("Auto left", Autoleft);
-    m_chooser.addOption("Auto right", Auto_right);
+    m_chooser.setDefaultOption("auto mini", autista);
+    m_chooser.addOption("Auto Middle", Automiddle); 
+    /*m_chooser.addOption("Auto left", Autoleft);
+    m_chooser.addOption("Auto right", Auto_right); */
    
     SmartDashboard.putData(m_chooser);
 
@@ -90,11 +94,11 @@ public class RobotContainer {
 
   private void configureBindings() { 
 
-    mechjoytick.x().toggleOnTrue(new comindex(index, 0.5)); 
+    mechjoytick.x().toggleOnTrue(new comindex(index, 0.53)); 
 
-    mechjoytick.a().toggleOnTrue(new comintake(intake, 0.9));
+    mechjoytick.a().whileTrue(new comintake(intake, 0.9));
 
-    mechjoytick.y().whileTrue(new ParallelCommandGroup(new comintake(intake, -0.9), new comindex(index, -0.5)));
+    mechjoytick.y().whileTrue(new ParallelCommandGroup(new comintake(intake, -0.9), new comindex(index, -0.53)));
   
     mechjoytick.start().toggleOnTrue(new comintake(intake, 0));
 

@@ -47,8 +47,69 @@ public class Automiddle extends Command {
       mytime = (System.currentTimeMillis() - starttime)/1000;
       System.out.println("mytime"+mytime);
 
+      if (mytime>=0 && mytime<=1){ // alza brazo, carga outake
+        
+        piston.forward();
+      }
 
-      if (mytime>0 && mytime<1){ // alza brazo, carga outake
+      else if (mytime> 1 && mytime<=2){ // alinea angulo
+        moutake.setoutakespeed(1.0);
+        posoutake.setposspeed(-0.08);
+      }
+
+      else if (mytime> 2 && mytime<=2.5){ // apaga angulo
+        moutake.setoutakespeed(1.0);
+        posoutake.setposspeed(0);
+      }
+
+      else if (mytime> 2.5 && mytime<=3.5){ //lanza pieza
+        index.setindexspeed(0.6);
+        moutake.setoutakespeed(1.0);
+      }
+
+      else if (mytime> 3.5 && mytime<=4.6){
+        index.setindexspeed(0);
+        intake.velocities(1.0);
+        moutake.setoutakespeed(1.0);
+        mecosmodule.auto(0.21, 0.2);
+      }
+
+      else if (mytime>4.6&& mytime <= 5.7){ //toma 2da pieza
+        intake.velocities(1.0);
+        mecosmodule.auto(0, 0);
+        moutake.setoutakespeed(1.0);
+      }
+
+      else if (mytime>5.7&& mytime <= 6.7){  //vuelve a adelante
+        intake.velocities(1.0);
+        mecosmodule.auto(-0.21, -0.2);
+        moutake.setoutakespeed(1.0);
+      }
+
+      else if (mytime>6.7&& mytime <= 7.8){
+        index.setindexspeed(0.6);
+        moutake.setoutakespeed(1.0);
+      }
+
+      else if (mytime>7.8&& mytime <= 9.1){
+        moutake.setoutakespeed(1.0);
+        mecosmodule.auto(0, 0);
+      }
+
+      else if (mytime>9.1&& mytime <= 10.4){
+        index.setindexspeed(0);
+        mecosmodule.auto(0.21, 0.2);
+      }
+ 
+      else{
+        mecosmodule.auto(0.0,0.0);
+        index.setindexspeed(0);
+        moutake.setoutakespeed(0);
+        intake.velocities(0);  
+      }
+
+
+      /*if (mytime>0 && mytime<1){ // alza brazo, carga outake
         moutake.setoutakespeed(0.95);
         posoutake.setposspeed(-0.08);
         piston.forward();
@@ -94,7 +155,7 @@ public class Automiddle extends Command {
         moutake.setoutakespeed(0);
         intake.velocities(0);
         
-      }
+      }/* */
       }
 
 

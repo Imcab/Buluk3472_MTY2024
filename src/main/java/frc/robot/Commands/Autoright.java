@@ -73,33 +73,33 @@ public class Autoright extends Command {
       
       }
 
-      else if (mytime>3.3 && mytime<3.8){ //avanza para atras poquito
+      else if (mytime>3.3 && mytime<3.6){ //avanza para atras poquito
       moutake.setoutakespeed(0.95);
       mecosmodule.auto(0.21,0.2); 
       intake.velocities(0.9);
         
       }
-      else if (mytime>3.8 && mytime<5.0){//freno
+      else if (mytime>3.6 && mytime<3.8){//freno
       moutake.setoutakespeed(0.95);
       mecosmodule.auto(-0.41,-0.4); 
   
     }
-     else if (mytime>5.0 && mytime<5.5) { //para y toma pieza
+     else if (mytime>3.8 && mytime<4.3) { //para y toma pieza
       mecosmodule.auto(0, 0);
       moutake.setoutakespeed(0.95);
      }
 
-    else if (mytime>5.5 && mytime<5.8){ //avanza para adelante
+    else if (mytime>4.3 && mytime<4.6){ //avanza para adelante
       mecosmodule.auto(-0.21,-0.2);
       moutake.setoutakespeed(0.95);
     
     }
 
-      else if (mytime>5.8 && mytime<7.3){ //regresa a posicion inicial, carga outake
+      else if (mytime>4.6 && mytime<4.9){ //regresa a posicion inicial, carga outake
       mecosmodule.auto(-0.6,-0.1); 
       moutake.setoutakespeed(0.95);
        
-      }
+      } //falta hacer cambios de tiempo
 
       else if (mytime>7.3 && mytime<9){ //  lanza 2da pieza
       index.setindexspeed(0.6);

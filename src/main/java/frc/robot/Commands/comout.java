@@ -35,7 +35,7 @@ public class comout extends Command{
 
        if (gatder > 0.3 && gatizq < 0.001 && invgatder <0.001 && invgatizq <0.001){
         
-        moutake.setoutakespeed(0.9); //cambiar a vel rapida despues(0.9)
+        moutake.setoutakespeed(1.0); //cambiar a vel rapida despues(0.9)
        }
        
        else if (gatder < 0.001 && gatizq > 0.001 && invgatder <0.001 && invgatizq <0.001){
@@ -46,7 +46,7 @@ public class comout extends Command{
                  moutake.setoutakespeed(-0.45);}
 
         else if (gatder < 0.001 && gatizq <0.001 && invgatder >0.3 && invgatizq <0.001){
-            moutake.setoutakespeed(-0.9);
+            moutake.setoutakespeed(-1.0);
         }else{
             moutake.setoutakespeed(0);
         }}
