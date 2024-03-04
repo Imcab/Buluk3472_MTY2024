@@ -48,7 +48,6 @@ public class Automiddle extends Command {
       System.out.println("mytime"+mytime);
 
       if (mytime>=0 && mytime<=1){ // alza brazo, carga outake
-        
         piston.forward();
       }
 

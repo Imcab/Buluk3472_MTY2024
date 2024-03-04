@@ -33,11 +33,20 @@ public class conmecos extends Command {
         double y_pos = y.get();
         double turn_pos = turn.get();  
 
-        double power = Math.hypot(x_pos, y_pos);
+        
 
-        if (power < 0.001) {
-            mecosmodule.driveMecos(0,0,turn_pos);
+        if (Math.abs(x_pos) < 0.05){
+            x_pos = 0;
         }
+        if (Math.abs(y_pos) < 0.05){
+            y_pos = 0;
+
+        }
+        if (Math.abs(turn_pos) < 0.05){
+            turn_pos = 0;
+        }
+
+        double power = Math.hypot(x_pos, y_pos);
 
         double theta = Math.atan2(y_pos, x_pos);
 

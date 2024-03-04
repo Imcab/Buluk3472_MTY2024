@@ -9,13 +9,13 @@ import frc.robot.constants.intakeconst;
 
 public class subpiston extends SubsystemBase{
     private final DoubleSolenoid Piston;
-    private final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    private final Compressor compressor;
 
 
 
     public subpiston(){
         Piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeconst.sforwardchn, intakeconst.sreversedchn);
-
+        compressor =  new Compressor(PneumaticsModuleType.CTREPCM);
         
     }
      public void forward(){
@@ -34,10 +34,10 @@ public class subpiston extends SubsystemBase{
     public void periodic(){
         
         double drawn = compressor.getCurrent();
-        double pressure = compressor.getPressure();
+      
   
         SmartDashboard.putNumber("drawn", drawn);
-        SmartDashboard.putNumber("pressure", pressure);
+   
 
     }
 

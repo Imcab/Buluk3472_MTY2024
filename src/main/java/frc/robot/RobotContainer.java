@@ -5,12 +5,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.Autoleft;
 import frc.robot.Commands.Automiddle;
 import frc.robot.Commands.Autoright;
 import frc.robot.Commands.autista;
-import frc.robot.Commands.colgcommd;
+import frc.robot.Commands.colgador1;
+import frc.robot.Commands.colgador1inv;
+import frc.robot.Commands.colgador2;
+import frc.robot.Commands.colgador2inv;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
@@ -18,7 +23,8 @@ import frc.robot.Commands.pistonforward;
 import frc.robot.Commands.pistonreverse;
 import frc.robot.Commands.composout;
 import frc.robot.Commands.conmecos;
-import frc.robot.Subsystems.subcolgador;
+import frc.robot.Subsystems.subcolgador1;
+import frc.robot.Subsystems.subcolgador2;
 import frc.robot.Subsystems.subindex;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.submecos;
@@ -43,13 +49,15 @@ public class RobotContainer {
 
 
   
-  private final subcolgador colgador = new subcolgador();
+  private final subcolgador2 colgador2 = new subcolgador2();
+
+  private final subcolgador1 colgador1= new subcolgador1();
 
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
   private final Command Automiddle = new Automiddle(mecosmodule, posoutake, index, intake, piston, moutake);
-  private final Command Autoleft = new Autoleft(mecosmodule, posoutake, index, intake, piston, moutake);
+  private final Command Autoleft =  new Autoleft(mecosmodule, posoutake, index, intake, piston, moutake);
   private final Command Auto_right = new Autoright(mecosmodule, intake, index, moutake, posoutake, piston);
 
   private final Command autista = new autista(mecosmodule, posoutake, index, intake, piston, moutake);
@@ -58,7 +66,7 @@ public class RobotContainer {
  
   public RobotContainer() {
 
-    m_chooser.setDefaultOption("auto mini", autista);
+    m_chooser.setDefaultOption("AUTO", autista);
     m_chooser.addOption("Auto Middle", Automiddle); 
     /*m_chooser.addOption("Auto left", Autoleft);
     m_chooser.addOption("Auto right", Auto_right); */
@@ -74,13 +82,33 @@ public class RobotContainer {
     });
 
     moutake.setDefaultCommand(new comout(moutake,
+  
     ()-> mechjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value),
-    ()-> mechjoytick.getRawAxis(XboxController.Axis.kLeftTrigger.value), 
-    ()-> driverjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value),
-    ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftTrigger.value)
+    ()-> mechjoytick.getRawAxis(XboxController.Axis.kLeftTrigger.value)
     ){
 
     });
+
+    colgador1.setDefaultCommand(new colgador1inv(colgador1,
+  
+    ()-> driverjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value)
+ 
+    ){
+
+    });
+
+    colgador2.setDefaultCommand(new colgador2inv(colgador2,
+  
+    ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftTrigger.value)
+ 
+    ){
+
+    });
+
+
+
+
+ 
 
     posoutake.setDefaultCommand(new composout(posoutake,
 
@@ -106,14 +134,18 @@ public class RobotContainer {
     
     mechjoytick.leftBumper().whileTrue(new pistonreverse(piston));
 
-    driverjoytick.rightBumper().whileTrue(new colgcommd(colgador, 1.0));
+    driverjoytick.rightBumper().whileTrue(new colgador1(colgador1, 1.0));
 
-    driverjoytick.leftBumper().whileTrue(new colgcommd(colgador, -1.0));
-    
+    driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
+      
   }
   
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    //return m_chooser.getSelected();
+    return new SequentialCommandGroup(
+      new WaitCommand(7),Autoleft
+      
+    );
   }
   
 }

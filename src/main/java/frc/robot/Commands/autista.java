@@ -48,19 +48,21 @@ public class autista extends Command {
       System.out.println("mytime"+mytime);
 
       if (mytime>=0 && mytime<=1){ // alza brazo, carga outake
-        moutake.setoutakespeed(1.0);
+       
         posoutake.setposspeed(-0.08);
-        piston.forward();
+        //piston.forward();
       }
 
       else if (mytime> 1 && mytime<=1.5){ // apaga angulo
-        moutake.setoutakespeed(1.0);
+        
         posoutake.setposspeed(0);
       }
 
-      else if (mytime> 1.5 && mytime<=2.5){ //lanza pieza
-        index.setindexspeed(0.6);
-        moutake.setoutakespeed(1.0);
+      else if (mytime> 1.5 && mytime<=3.6){
+        
+        mecosmodule.auto(-0.21,- 0.2);
+     
+      
       }
  
 
