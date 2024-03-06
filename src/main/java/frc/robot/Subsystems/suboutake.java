@@ -11,9 +11,6 @@ public class suboutake extends SubsystemBase{
 
     private int outakeid = outakeconst.outid;
     private int outakeid2 = outakeconst.outid2;
-
-
-    
     
     public suboutake(){
         outake1 = new CANSparkMax(outakeid, MotorType.kBrushless);
@@ -21,24 +18,17 @@ public class suboutake extends SubsystemBase{
 
         outake1.setInverted(true);
 
-
         }
-
-   
 
     @Override
     public void periodic(){
-
-      
-
-    
-              
 
     }
 
         public void setoutakespeed(double outspeed){
             outake1.set(outspeed);
             outake2.set(outspeed);
+
         }
 
         

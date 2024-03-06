@@ -11,17 +11,14 @@ public class colgador2inv extends Command{
     
 
     public colgador2inv(subcolgador2 colgador2, Supplier<Double> speed){
-
             this.colgador2 = colgador2;
             this.speed = speed;
-            
-
+        
         addRequirements(colgador2);
     }
 
     @Override
-    public void initialize(){
-        
+    public void initialize(){  
     }
 
     @Override
@@ -39,14 +36,11 @@ public class colgador2inv extends Command{
 
     @Override
     public void end(boolean interrupted) {
-        
     }
 
 
     @Override
     public boolean isFinished(){
-        
-        
         return false;
     }
 

@@ -32,8 +32,6 @@ public class comintake extends Command{
 
     @Override
     public boolean isFinished(){
-        
-        
         return false;
     }
   

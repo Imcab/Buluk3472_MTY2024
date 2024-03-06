@@ -26,6 +26,10 @@ public class composout extends Command{
 
         double speedpos = posspeed.get();
 
+        if (Math.abs(speedpos) < 0.05){
+            speedpos = 0;
+        }
+
         posoutake.setposspeed(speedpos * 0.1);
     }
 

@@ -21,7 +21,6 @@ public class comout extends Command{
 
     @Override
     public void initialize(){
-        
     }
 
     @Override
@@ -29,26 +28,21 @@ public class comout extends Command{
        double gatder = speed.get();
        double gatizq = speed2.get();
 
-       
-       if (gatder > 0.3 && gatizq < 0.001){
-        
-        moutake.setoutakespeed(1.0); //cambiar a vel rapida despues(0.9)
-       }
+        if (gatder > 0.3 && gatizq < 0.001){
+            moutake.setoutakespeed(1.0); //cambiar a vel rapida despues(0.9)
+        }
        
        else if (gatder < 0.001 && gatizq > 0.001){
-
-        moutake.setoutakespeed(0.45);}
+            moutake.setoutakespeed(0.45);
+        }
         
-       
         else{
             moutake.setoutakespeed(0);
-        }}
-
-       
+        }
+    }
 
     @Override
     public boolean isFinished(){
-        
         return false;
     }
   

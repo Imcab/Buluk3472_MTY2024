@@ -11,29 +11,20 @@ public class subcolgador1 extends SubsystemBase {
     
     private int Idcolg = colgConst.colgId;
 
-
     public subcolgador1(){
 
         //cold1 id 12, cold2 id 13
         colgador1 = new CANSparkMax(Idcolg, MotorType.kBrushless);
         colgador1.setInverted(true);
-   
-
     }
 
     public void setcolgador1(double speed){
         colgador1.set(speed);
-        
     }
-
-
-
+    
     @Override
     public void periodic(){
         
     }
-
-        
-
-    
+   
 } 

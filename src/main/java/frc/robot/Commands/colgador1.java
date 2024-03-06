@@ -9,8 +9,8 @@ public class colgador1 extends Command{
 
     public colgador1(subcolgador1 colgador1, Double vel){
 
-            this.colgador1 = colgador1;
-            this.vel = vel;
+        this.colgador1 = colgador1;
+        this.vel = vel;
 
         addRequirements(colgador1);
     }
@@ -34,11 +34,8 @@ public class colgador1 extends Command{
         colgador1.setcolgador1(0);
     }
 
-
     @Override
     public boolean isFinished(){
-        
-        
         return false;
     }
 

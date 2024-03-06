@@ -7,12 +7,12 @@ import frc.robot.Subsystems.subcolgador1;
 
 public class colgador1inv extends Command{
     subcolgador1 colgador1;
-   Supplier <Double> vel;
+    Supplier <Double> vel;
 
     public colgador1inv(subcolgador1 colgador1, Supplier<Double> vel){
 
-            this.colgador1 = colgador1;
-            this.vel = vel;
+        this.colgador1 = colgador1;
+        this.vel = vel;
 
         addRequirements(colgador1);
     }
@@ -43,8 +43,6 @@ public class colgador1inv extends Command{
 
     @Override
     public boolean isFinished(){
-        
-        
         return false;
     }
 
