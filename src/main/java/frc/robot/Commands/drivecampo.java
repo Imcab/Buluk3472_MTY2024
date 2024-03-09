@@ -40,7 +40,7 @@ public class drivecampo extends Command{
             rotation = 0;
         }
 
-        mecanum.driveCartesian(velX,velY,rotation, mecanum.angle());
+        mecanum.driveCartesian(velX,velY,rotation, mecanum.anglecampo());
     }
 
     @Override

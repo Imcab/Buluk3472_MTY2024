@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Commands.autotridente;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.colgador1;
@@ -39,6 +40,8 @@ public class RobotContainer {
 
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
+
+  private final Command autotridente = new autotridente(mecanum, posoutake, intake, moutake);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -113,7 +116,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    return autotridente;
     /*return new SequentialCommandGroup(
       new WaitCommand(7),Autoleft
       

@@ -51,20 +51,20 @@ public class DriveMecos extends SubsystemBase{
     
         navX = new AHRS(SPI.Port.kMXP);
 
+        navX.setAngleAdjustment(90.00);
+
     }
 
     public void resetGyro() {
         navX.reset();
     }
 
-    public Rotation2d angle (){
+    public Rotation2d anglecampo (){
         return new Rotation2d(navX.getAngle());
     }
 
-    
-    public Rotation2d Heading(){
-        gyroangle = navX.getRotation2d();
-        return gyroangle;
+    public double angle(){
+       return navX.getAngle();
     }
 
     public void driveCartesian(double speedX, double speedY, double speedRotation) {
@@ -74,7 +74,7 @@ public class DriveMecos extends SubsystemBase{
 
     public void driveCartesian(double speedX, double speedY, double speedRotation, Rotation2d angleRotation) {
         //orientado a campo
-        driveMecanum.driveCartesian(speedX, speedY, speedRotation, angle());
+        driveMecanum.driveCartesian(speedX, speedY, speedRotation, anglecampo());
     }
 
     public void tankauto (double speedder, double speedizq){
@@ -104,7 +104,7 @@ public class DriveMecos extends SubsystemBase{
         SmartDashboard.putNumber("Encoder Atras Izquierda", (AIENC/9.16)*0.1524);
         SmartDashboard.putNumber("Encoder Atras Derecha", (ADENC/9.16)*0.1524);
 
-        SmartDashboard.putNumber("NavX", navX.getAngle());
+        SmartDashboard.putNumber("NavX", angle());
 
     }
   

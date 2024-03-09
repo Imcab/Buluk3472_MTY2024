@@ -17,9 +17,8 @@ public final class constants {
 
     public static final class intakeconst{
 
-        public static final int m_intake = 11;
-        public static final int m_index = 9;
-
+        public static final int m_intake = 13;
+    
     }
 
     public static final class outakeconst{
@@ -32,8 +31,8 @@ public final class constants {
     }
 
     public static final class colgConst{
-        public static final int colgId = 12;
-        public static final int colg2Id = 13;
+        public static final int colgId = 9;
+        public static final int colg2Id = 11;
     } 
     
 }
