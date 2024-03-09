@@ -39,13 +39,22 @@ public class driverobot extends Command{
             velZ = 0;
         }
 
-        submecos.driveCartesian(velX,velY,velZ);
+        double power = Math.hypot(velX, velY);
+
+        if (power < 0.001){
+            submecos.driveMecos(0,0,velZ);
+        }
+        double theta = Math.atan2(velY,velX);
+
+        submecos.driveMecos(theta, power, velZ);
+
+
 
     }
 
     @Override
     public void end(boolean interrupted) {
-        submecos.driveCartesian(0,0,0);
+    
     }
 
     @Override

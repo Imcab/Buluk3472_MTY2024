@@ -14,7 +14,7 @@ import frc.robot.Commands.colgador2inv;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
 import frc.robot.Commands.composout;
-import frc.robot.Commands.drivecampo;
+import frc.robot.Commands.composintake;
 import frc.robot.Commands.driverobot;
 import frc.robot.Subsystems.subcolgador1;
 import frc.robot.Subsystems.subcolgador2;
@@ -22,6 +22,7 @@ import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.DriveMecos;
 import frc.robot.Subsystems.suboutake;
 import frc.robot.Subsystems.subpos;
+import frc.robot.Subsystems.subposintake;
 
 
 public class RobotContainer {
@@ -37,6 +38,8 @@ public class RobotContainer {
   private final subcolgador2 colgador2 = new subcolgador2();
 
   private final subcolgador1 colgador1= new subcolgador1();
+
+  private final subposintake posintake = new subposintake();
 
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
@@ -58,15 +61,8 @@ public class RobotContainer {
       ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftY.value),
       ()-> driverjoytick.getRawAxis(XboxController.Axis.kRightX.value));
 
-    drivecampo cmdDrivecampo = new drivecampo(mecanum,
 
-      ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftX.value),
-      ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftY.value),
-      ()-> driverjoytick.getRawAxis(XboxController.Axis.kRightX.value));
-
-    mecanum.setDefaultCommand(
-      constants.Mecanum.Fieldoriented
-      ? cmdDrivecampo : cmdDriverobot
+    mecanum.setDefaultCommand(cmdDriverobot
     );
 
     moutake.setDefaultCommand(new comout(moutake,
@@ -107,11 +103,16 @@ public class RobotContainer {
  
     mechjoytick.a().whileTrue(new comintake(intake, 0.9));
 
-    mechjoytick.y().whileTrue(new comintake(intake, -0.9));
+    mechjoytick.x().whileTrue(new comintake(intake, -0.9));
     
     driverjoytick.rightBumper().whileTrue(new colgador1(colgador1, 1.0));
 
     driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
+
+
+    mechjoytick.rightBumper().whileTrue(new composintake(posintake, -0.5));
+
+    mechjoytick.leftBumper().whileTrue(new composintake(posintake, -0.5));
       
   }
   

@@ -1,17 +1,18 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Subsystems.subintake;
+import frc.robot.Subsystems.subposintake;
 
-public class comintake extends Command{
-    subintake intake;
+public class composintake extends Command{
+
+    subposintake posintake;
     private final double speed;
 
-    public comintake(subintake intake, double speed){
+    public composintake(subposintake posintake, double speed){
         
-        this.intake = intake;
+        this.posintake = posintake;
         this.speed = speed;
-        addRequirements(intake);        
+        addRequirements(posintake);        
 
     }
 
@@ -21,18 +22,18 @@ public class comintake extends Command{
 
     @Override
     public void execute(){
-        intake.velocities(speed);
+        posintake.vel(speed);
     }
 
     @Override
     public void end(boolean interrupted) {
-        intake.velocities(0);
+        posintake.vel(0);
     }
 
     @Override
     public boolean isFinished(){
         return false;
     }
-  
-}
 
+    
+}

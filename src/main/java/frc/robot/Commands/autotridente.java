@@ -37,37 +37,53 @@ public class autotridente extends Command{
         mytime = (System.currentTimeMillis() - starttime)/1000;
         System.out.println("mytime"+mytime);
 
-        if  (mytime>= 0.0 && mytime < 0.17){
+        // CAMBIA LAS PAUSAS :'v
+
+        if  (mytime>= 0.0 && mytime < 0.2){
             mecanum.tankauto(0.41, 0.4);
+            
         }
 
-        else if(mytime>= 0.17 && mytime < 0.2){
+        else if(mytime>= 0.2 && mytime < 1.2){
             mecanum.tankauto(0.0, 0.0);
         }
 
-        else if (mytime>= 0.2 && mytime < 0.37){
-            mecanum.tankauto(0.21, 0.2);
+        else if (mytime>= 1.2 && mytime < 1.4){
+            mecanum.tankauto(-0.21,- 0.2);
+        }
+
+        else if (mytime>= 1.4 && mytime < 2.4){
+            mecanum.tankauto(0, 0);
         }
 
 
-        else if (mytime>= 0.37 && mytime < 2.67){
-            mecanum.tankauto(0, 0);
+        else if (mytime>= 2.4 && mytime < 4.7){
+            
              mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21);
         }
       
-        else if (mytime>= 2.67 && mytime < 2.7){
+        else if (mytime>= 4.7 && mytime < 6.7){
             mecanum.mecanumauto(0, 0, 0, 0);
         }
-        else  if (mytime>= 2.7 && mytime < 5.0){
+        else  if (mytime>= 6.7 && mytime < 9.0){
             mecanum.mecanumauto(0.2, -0.21, -0.2, 0.21);
         }
         
-        else if (mytime>= 5.0 && mytime < 5.2){
+        else if (mytime>= 9.0 && mytime < 10.2){
              mecanum.mecanumauto(0, 0, 0, 0);
         }
-        else  if (mytime>= 5.2 && mytime < 5.5){
-            mecanum.mecanumauto(0.2, -0.21, -0.2, 0.21);
+        else  if (mytime>= 10.2 && mytime < 12.5){
+            mecanum.mecanumauto(0.2, 0-.21, -0.2, 0.21);
         }
+
+        else  if (mytime>= 12.5 && mytime < 13){
+             mecanum.mecanumauto(0, 0, 0, 0);
+        }
+        else  if (mytime>= 13 && mytime < 15.4){
+              mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21);
+        }
+        
+        
         else{
             mecanum.tankauto(0, 0);
             mecanum.mecanumauto(0, 0, 0, 0);

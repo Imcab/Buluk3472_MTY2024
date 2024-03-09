@@ -18,6 +18,7 @@ public final class constants {
     public static final class intakeconst{
 
         public static final int m_intake = 13;
+        public static final int m_posintakeid = 12;
     
     }
 

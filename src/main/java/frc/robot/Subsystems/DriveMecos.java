@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.constants.driveconst;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Rotation2d;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
@@ -31,7 +32,6 @@ public class DriveMecos extends SubsystemBase{
 
     Rotation2d gyroangle;
 
-    private MecanumDrive driveMecanum;
     private AHRS navX;
 
     public DriveMecos(){
@@ -51,7 +51,12 @@ public class DriveMecos extends SubsystemBase{
     
         navX = new AHRS(SPI.Port.kMXP);
 
-        navX.setAngleAdjustment(90.00);
+        navX.setAngleAdjustment(-180);
+
+    
+    
+
+         
 
     }
 
@@ -67,15 +72,28 @@ public class DriveMecos extends SubsystemBase{
        return navX.getAngle();
     }
 
-    public void driveCartesian(double speedX, double speedY, double speedRotation) {
-        //orientado a robot
-        driveMecanum.driveCartesian(speedX, speedY, speedRotation);
-    }  
+    public void driveMecos(double theta, double power, double turn){
+        double sin = Math.sin(theta - Math.PI/4);
+        double cos = Math.cos(theta - Math.PI/4);
+        double max = Math.max(Math.abs(sin), Math.abs(cos));
+        double fIv = power * cos / max + turn;
+        double fDv = power * sin / max - turn;
+        double aIv = power * sin / max + turn;
+        double aDv = power * cos / max - turn;
+        
+        if ((power + Math.abs(turn)) > 1) {
+            fIv /= power + Math.abs(turn);
+            fDv /= power + Math.abs(turn);
+            aIv /= power + Math.abs(turn);
+            aDv /= power + Math.abs(turn);
 
-    public void driveCartesian(double speedX, double speedY, double speedRotation, Rotation2d angleRotation) {
-        //orientado a campo
-        driveMecanum.driveCartesian(speedX, speedY, speedRotation, anglecampo());
-    }
+        }
+        FrentIzq.set(fIv);
+        FrentDer.set(fDv);
+        AtrasIzq.set(aIv);
+        AtrasDer.set(aDv);
+
+}
 
     public void tankauto (double speedder, double speedizq){
         FrentIzq.set(speedizq);
@@ -103,6 +121,8 @@ public class DriveMecos extends SubsystemBase{
         SmartDashboard.putNumber("Encoder Frente Derecha", (FDENC/9.16)*0.1524);
         SmartDashboard.putNumber("Encoder Atras Izquierda", (AIENC/9.16)*0.1524);
         SmartDashboard.putNumber("Encoder Atras Derecha", (ADENC/9.16)*0.1524);
+        
+        CameraServer.startAutomaticCapture("Camera", 0);
 
         SmartDashboard.putNumber("NavX", angle());
 
