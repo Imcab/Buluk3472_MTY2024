@@ -9,7 +9,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Rotation2d;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -53,11 +52,7 @@ public class DriveMecos extends SubsystemBase{
 
         navX.setAngleAdjustment(-180);
 
-    
-    
-
-         
-
+        CameraServer.startAutomaticCapture("Camera", 0);
     }
 
     public void resetGyro() {
@@ -117,12 +112,11 @@ public class DriveMecos extends SubsystemBase{
         AIENC = EncoderAtrasIzq.getPosition();
         ADENC = EncoderAtrasDer.getPosition();
 
-        SmartDashboard.putNumber("Encoder Frente Izquierda", (FIENC/9.16)*0.1524);
+       /*  SmartDashboard.putNumber("Encoder Frente Izquierda", (FIENC/9.16)*0.1524);
         SmartDashboard.putNumber("Encoder Frente Derecha", (FDENC/9.16)*0.1524);
         SmartDashboard.putNumber("Encoder Atras Izquierda", (AIENC/9.16)*0.1524);
-        SmartDashboard.putNumber("Encoder Atras Derecha", (ADENC/9.16)*0.1524);
+        SmartDashboard.putNumber("Encoder Atras Derecha", (ADENC/9.16)*0.1524); */
         
-        CameraServer.startAutomaticCapture("Camera", 0);
 
         SmartDashboard.putNumber("NavX", angle());
 

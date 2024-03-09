@@ -2,24 +2,25 @@ package frc.robot.Subsystems;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import frc.robot.HPPMathLib;
 import frc.robot.constants.outakeconst;
+import frc.robot.HPPMathLib;
 
 public class subpos extends SubsystemBase{
 
     PIDController PIDOUT;
 
-    double kP = 0.0;
+    double kP = 0.016;
     double kI = 0.0;
     double kD = 0.0;
-    double Setpoint1 = 0.0;
-    double Setpoint2 = 0.0;
-    double Setpoint3 = 0.0;
     double encBits;
     double angulo_encoder;
-
+    double offset_encoder = 112.35;
 
     CANSparkMax posout1, posout2;
     private int poutid = outakeconst.posoutid;
@@ -33,37 +34,33 @@ public class subpos extends SubsystemBase{
 
         PIDOUT = new PIDController(kP, kI, kD);
 
-
         posout2.setInverted(true);
     }
 
-    public void pos1(){
-        posout1.set(PIDOUT.calculate(angulo_encoder, Setpoint1));
-        posout2.set(PIDOUT.calculate(angulo_encoder, Setpoint1));
-    }
-    public void pos2(){
-        posout1.set(PIDOUT.calculate(angulo_encoder, Setpoint2));
-        posout2.set(PIDOUT.calculate(angulo_encoder, Setpoint2));
-    }
-
-    public void pos3(){
-        posout1.set(PIDOUT.calculate(angulo_encoder, Setpoint3));
-        posout2.set(PIDOUT.calculate(angulo_encoder, Setpoint3));
+    public void position_outake (double angle){    
+        posout1.set(PIDOUT.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));
+        posout2.set(PIDOUT.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));
+        
     }
 
     @Override
     public void periodic(){
         encBits = encoderOutake.getValue();
-        angulo_encoder = (encBits*360)/4096;
+        angulo_encoder = HPPMathLib.coterminal( (encBits*360)/4096 - offset_encoder);
+
+        SmartDashboard.putNumber("AngOutake", angulo_encoder);
     }
-        public void setposspeed(double oposspeed){
-            posout1.set(oposspeed);
-            posout2.set(oposspeed);
-        }
-
-
-        
-
+    
+    public void setposspeed(double oposspeed){ 
+        posout1.set(oposspeed); 
+        posout2.set(oposspeed);
+    }
+ 
+    public double angle(){
+        return angulo_encoder; 
+    }
 
 
 }
+
+// :v

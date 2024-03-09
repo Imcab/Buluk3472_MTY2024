@@ -56,10 +56,9 @@ public class autotridente extends Command{
             mecanum.tankauto(0, 0);
         }
 
-
         else if (mytime>= 2.4 && mytime < 4.7){
             
-             mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21);
+            mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21);
         }
       
         else if (mytime>= 4.7 && mytime < 6.7){

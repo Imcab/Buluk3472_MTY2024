@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Commands.autotridente;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.colgador1;
 import frc.robot.Commands.colgador1inv;
@@ -14,8 +13,10 @@ import frc.robot.Commands.colgador2inv;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
 import frc.robot.Commands.composout;
-import frc.robot.Commands.composintake;
 import frc.robot.Commands.driverobot;
+import frc.robot.Commands.BOOSTintake;
+import frc.robot.Commands.BOOSTREintake;
+import frc.robot.Commands.PIDoutake;
 import frc.robot.Subsystems.subcolgador1;
 import frc.robot.Subsystems.subcolgador2;
 import frc.robot.Subsystems.subintake;
@@ -109,10 +110,13 @@ public class RobotContainer {
 
     driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
 
+   mechjoytick.rightBumper().whileTrue(new BOOSTREintake(posintake, 165));
 
-    mechjoytick.rightBumper().whileTrue(new composintake(posintake, -0.5));
+    mechjoytick.leftBumper().whileTrue(new BOOSTintake(posintake, 100));
 
-    mechjoytick.leftBumper().whileTrue(new composintake(posintake, -0.5));
+    mechjoytick.y().whileTrue(new PIDoutake(posoutake, 30.00)); //amp
+
+    mechjoytick.b().whileTrue(new PIDoutake(posoutake, 40.00)); //espiker
       
   }
   

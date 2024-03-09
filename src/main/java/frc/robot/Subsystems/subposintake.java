@@ -5,8 +5,10 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.intakeconst;
+import frc.robot.HPPMathLib;
 
 public class subposintake extends SubsystemBase{
 
@@ -16,14 +18,12 @@ public class subposintake extends SubsystemBase{
 
     PIDController PIDintake;
 
-    
-    double kP = 0.0;
+    double kP = 0.004;
     double kI = 0.0;
     double kD = 0.0;
-    double Setpoint1 = 0.0;
-    double Setpoint2 = 0.0;
     int encBits ;
     double angulo_encoder;
+    double offset_encoder = 340;
     
 
     public subposintake(){
@@ -37,20 +37,24 @@ public class subposintake extends SubsystemBase{
         m_posintake.set(speed);
     }
 
-    public void Pos1 (){
-    
-        m_posintake.set(PIDintake.calculate(angulo_encoder, Setpoint1));
-    }
-
-    public void Pos2 (){
-         m_posintake.set(PIDintake.calculate(angulo_encoder, Setpoint2));
+    public void position_intake (double angle){    
+        m_posintake.set(PIDintake.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));
     }
     
 
     @Override
     public void periodic(){
         encBits = encoderIntake.getValue();
-        angulo_encoder = (encBits*360)/4096;
+
+        // en caso de que esté girando en sentido contrario
+        // angulo_encoder = coterminal(- (encBits*360)/4096);
+
+        angulo_encoder = HPPMathLib.coterminal( (encBits*360)/4096 - offset_encoder);
+        SmartDashboard.putNumber("AngIntake", angulo_encoder);
+    }
+
+    public double angle(){
+        return angulo_encoder;
     }
 }
 
