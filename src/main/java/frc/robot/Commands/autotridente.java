@@ -36,10 +36,22 @@ public class autotridente extends Command{
     public void execute(){
         mytime = (System.currentTimeMillis() - starttime)/1000;
         System.out.println("mytime"+mytime);
+        //menos afuerita es derecha, menos adentro es izquierda
 
+        //atras todo 0.2 seg .4 velocidad
+        //adelante 3/4 0.2 seg a .2 de velocidad
+        //2.3 seg a 2 de velocidad para cualquier lado
+        //subir intake 1 seg
+        //bajar intake 2 seg
+        // cargar outake 1 seg
         // CAMBIA LAS PAUSAS :'v
 
-        if  (mytime>= 0.0 && mytime < 0.2){
+       
+       // if (mytime>=0 && mytime < 1.0){
+            
+        //}
+
+       /* if  (mytime>= 0.0 && mytime < 0.2){
             mecanum.tankauto(0.41, 0.4);
             
         }
@@ -89,63 +101,8 @@ public class autotridente extends Command{
             moutake.setoutakespeed(0);
             intake.velocities(0);
             
-          }
-       /*  if (mytime>= 0 && mytime<0.55){ //se fue pa atras
-           mecanum.tankauto(-0.41, -0.4); // (derecha, izquierda)
-        }
-        
-
-        else if (mytime>=0.55 && mytime<1.1){ // se fue pa lante :)
-            mecanum.tankauto(0.41, 0.4);
-        }
-
-        else if (mytime>=1.1 && mytime<1.4){ // se fue pa atras a la mita' :/
-            mecanum.tankauto(-0.41, -0.4);
-        }
-     
-        else if (mytime>=1.4 && mytime<1.95){ // se va pa un lado (derecha)
-            mecanum.mecanumauto(0.2, -0.21, -0.2, 0.21); //fi fd ai ad
-        }
-
-        else if (mytime>=1.95 && mytime<2.25){ // se fue pa atras a la mita' de la 2da pieza xd
-            mecanum.tankauto(-0.41, -0.4);
-        }
-
-        else if (mytime>=2.25 && mytime<2.55){ // se va pa lante a la mitad de la 2da pieza (regreso)
-            mecanum.tankauto(0.41, 0.4);
-        }
-
-        else if (mytime>=2.55 && mytime<3.1){ // se va pa un lado (del lado derecho de regreso al centro)
-            mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21); //fi fd ai ad
-        }
-
-        else if (mytime>=3.1 && mytime<3.4){ // se fue pa adelante a la mita'
-            mecanum.tankauto(0.41, 0.4);
-        }
-
-        else if (mytime>=3.4 && mytime<3.7){ // se fue pa atras a la mita' :/
-            mecanum.tankauto(-0.41, -0.4);
-        }
-        
-        else if (mytime>=3.7&& mytime<4.25){ // se va pa un lado (izquierda)
-            mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21); //fi fd ai ad
-        }
-        
-        else if (mytime>=4.25 && mytime<4.55){ // se fue pa atras a la mita' de la 3ra pieza xd
-            mecanum.tankauto(-0.41, -0.4);
-        }
-
-        else if (mytime>=4.55 && mytime<4.85){ // se va pa lante a la mitad de la 3ra pieza (regreso)
-            mecanum.tankauto(0.41, 0.4);
-        }
-
-        else if (mytime>=4.85 && mytime<5.4){ // se va pa un lado (del lado izquierdo de regreso al centro)
-            mecanum.mecanumauto(0.2, -0.21, -0.2, 0.21); //fi fd ai ad
-        }
-
-        else if (mytime>=5.4 && mytime<5.7){ // se fue pa adelante a la mita'
-            mecanum.tankauto(0.41, 0.4);
-        } */
+          } */
+       
 
     }
 

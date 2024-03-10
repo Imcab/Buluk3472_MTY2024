@@ -25,9 +25,9 @@ public class driverobot extends Command{
     @Override
     public void execute(){
 
-        double velX = X.get();
+        double velX = -X.get();
         double velY = Y.get();
-        double velZ = Z.get();
+        double velZ = -Z.get();
 
         if (Math.abs(velX) < 0.05){
             velX = 0;

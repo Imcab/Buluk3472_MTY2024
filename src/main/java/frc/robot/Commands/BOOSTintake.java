@@ -9,7 +9,8 @@ public class BOOSTintake extends Command{
     subposintake posintake;
     double angle;
 
-    public BOOSTintake(subposintake posintake, double angle){
+
+    public BOOSTintake(subposintake posintake,double angle){
         this.posintake = posintake;
         this.angle = angle;
 
@@ -18,7 +19,7 @@ public class BOOSTintake extends Command{
 
     @Override
     public void initialize(){
-
+        
     }
 
     @Override

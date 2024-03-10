@@ -19,7 +19,7 @@ public class subpos extends SubsystemBase{
     double kD = 0.0;
     double encBits;
     double angulo_encoder;
-    double offset_encoder = 0;
+    double offset_encoder = 251;
 
     CANSparkMax posout1, posout2;
     private int poutid = outakeconst.posoutid;

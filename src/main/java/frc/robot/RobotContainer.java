@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Commands.autotridente;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.colgador1;
@@ -110,9 +111,9 @@ public class RobotContainer {
 
     driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
 
-    mechjoytick.rightBumper().whileTrue(new BOOSTREintake(posintake, 165));
+    mechjoytick.rightBumper().whileTrue (new ParallelCommandGroup(new BOOSTREintake(posintake,  165),  new PIDoutake(posoutake, 20.00)));
 
-    mechjoytick.leftBumper().whileTrue(new BOOSTintake(posintake, 100));
+    mechjoytick.leftBumper().whileTrue(new ParallelCommandGroup(new BOOSTintake(posintake,  100), new PIDoutake(posoutake, 20.00))); 
 
     mechjoytick.y().whileTrue(new PIDoutake(posoutake, 30.00)); //amp
 
