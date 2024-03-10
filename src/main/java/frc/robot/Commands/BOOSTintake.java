@@ -1,5 +1,6 @@
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.subposintake;
 
@@ -24,18 +25,21 @@ public class BOOSTintake extends Command{
     public void execute(){
 
         if (posintake.angle() > 105) {
-           posintake.position_intake(angle);
-            System.out.println("a");
+            posintake.position_intake(angle);
+            SmartDashboard.putBoolean("Intake Ready", false);
         }
         else if (posintake.angle() > 25 && posintake.angle() < 35) {
             posintake.vel(-0.03472);
-             System.out.println("b");
+            SmartDashboard.putBoolean("Intake Ready", false);
         }
         else {
-           posintake.vel(0);
-             System.out.println("c");
+            posintake.vel(0);
+            if (posintake.angle() < 25) {
+                SmartDashboard.putBoolean("Intake Ready", true);
+            }
         }
         
+
     }
 
   

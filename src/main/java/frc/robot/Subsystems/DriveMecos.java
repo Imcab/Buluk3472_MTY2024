@@ -2,7 +2,6 @@ package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.constants.driveconst;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -22,13 +21,6 @@ public class DriveMecos extends SubsystemBase{
     private int AtrasIzqid = driveconst.ai_id;
     private int AtrasDerid = driveconst.ad_id;
 
-    private RelativeEncoder EncoderFrenteIzq;
-    private RelativeEncoder EncoderFrenteDer;
-    private RelativeEncoder EncoderAtrasIzq;
-    private RelativeEncoder EncoderAtrasDer;
-
-    private double FDENC,FIENC,AIENC,ADENC;
-
     Rotation2d gyroangle;
 
     private AHRS navX;
@@ -39,11 +31,6 @@ public class DriveMecos extends SubsystemBase{
         FrentDer = new CANSparkMax(FrenteDerid, MotorType.kBrushless);
         AtrasIzq = new CANSparkMax(AtrasIzqid, MotorType.kBrushless);
         AtrasDer = new CANSparkMax(AtrasDerid, MotorType.kBrushless);
-
-        EncoderFrenteIzq = FrentIzq.getEncoder();
-        EncoderFrenteDer = FrentDer.getEncoder();
-        EncoderAtrasIzq = AtrasIzq.getEncoder();
-        EncoderAtrasDer = AtrasDer.getEncoder();
 
         FrentIzq.setInverted(true);
         AtrasIzq.setInverted(true);
@@ -106,17 +93,6 @@ public class DriveMecos extends SubsystemBase{
 
     @Override
     public void periodic(){
-
-        FIENC = EncoderFrenteIzq.getPosition();
-        FDENC = EncoderFrenteDer.getPosition();
-        AIENC = EncoderAtrasIzq.getPosition();
-        ADENC = EncoderAtrasDer.getPosition();
-
-       /*  SmartDashboard.putNumber("Encoder Frente Izquierda", (FIENC/9.16)*0.1524);
-        SmartDashboard.putNumber("Encoder Frente Derecha", (FDENC/9.16)*0.1524);
-        SmartDashboard.putNumber("Encoder Atras Izquierda", (AIENC/9.16)*0.1524);
-        SmartDashboard.putNumber("Encoder Atras Derecha", (ADENC/9.16)*0.1524); */
-        
 
         SmartDashboard.putNumber("NavX", angle());
 

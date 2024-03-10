@@ -9,7 +9,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import frc.robot.HPPMathLib;
 import frc.robot.constants.outakeconst;
-import frc.robot.HPPMathLib;
 
 public class subpos extends SubsystemBase{
 
@@ -20,7 +19,7 @@ public class subpos extends SubsystemBase{
     double kD = 0.0;
     double encBits;
     double angulo_encoder;
-    double offset_encoder = 112.35;
+    double offset_encoder = 0;
 
     CANSparkMax posout1, posout2;
     private int poutid = outakeconst.posoutid;
@@ -59,7 +58,6 @@ public class subpos extends SubsystemBase{
     public double angle(){
         return angulo_encoder; 
     }
-
 
 }
 

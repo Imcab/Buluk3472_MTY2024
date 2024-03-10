@@ -110,7 +110,7 @@ public class RobotContainer {
 
     driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
 
-   mechjoytick.rightBumper().whileTrue(new BOOSTREintake(posintake, 165));
+    mechjoytick.rightBumper().whileTrue(new BOOSTREintake(posintake, 165));
 
     mechjoytick.leftBumper().whileTrue(new BOOSTintake(posintake, 100));
 

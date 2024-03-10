@@ -23,7 +23,7 @@ public class subposintake extends SubsystemBase{
     double kD = 0.0;
     int encBits ;
     double angulo_encoder;
-    double offset_encoder = 340;
+    double offset_encoder = 0;
     
 
     public subposintake(){
