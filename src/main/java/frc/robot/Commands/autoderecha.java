@@ -25,7 +25,6 @@ public class autoderecha extends Command {
         this.intake = intake;
 
         addRequirements(mecanum, posoutake, moutake, intake);
-
     }
 
     @Override
@@ -41,7 +40,6 @@ public class autoderecha extends Command {
         System.out.println("mytime"+mytime); 
         angle = mecanum.angle();
         
-
         if (mytime>= 0 && mytime<0.40){ 
             //outtake 
          }

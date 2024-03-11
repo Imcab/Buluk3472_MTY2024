@@ -5,6 +5,7 @@ import frc.robot.Subsystems.DriveMecos;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.suboutake;
 import frc.robot.Subsystems.subpos;
+import frc.robot.Subsystems.subposintake;
 
 public class autotridente extends Command{
 
@@ -12,18 +13,20 @@ public class autotridente extends Command{
     subpos posoutake;
     suboutake moutake;
     subintake intake;
+    subposintake posintake;
 
     private double starttime;
     private double mytime;
 
-    public autotridente(DriveMecos mecanum, subpos posoutake, subintake intake, suboutake moutake){
+    public autotridente(DriveMecos mecanum, subpos posoutake, subintake intake, suboutake moutake, subposintake posintake){
        
         this.mecanum = mecanum;
         this.posoutake = posoutake;
-        this.moutake = moutake;
         this.intake = intake;
+        this.moutake = moutake;
+        this.posintake = posintake;
 
-        addRequirements(mecanum, posoutake, moutake, intake);
+        addRequirements(mecanum, posoutake, intake, moutake, posintake);
     }
 
     @Override
@@ -45,65 +48,59 @@ public class autotridente extends Command{
         //bajar intake 2 seg
         // cargar outake 1 seg
         // CAMBIA LAS PAUSAS :'v
-
-       
-       // if (mytime>=0 && mytime < 1.0){
-            
-        //}
-
-       /* if  (mytime>= 0.0 && mytime < 0.2){
-            mecanum.tankauto(0.41, 0.4);
-            
-        }
-
-        else if(mytime>= 0.2 && mytime < 1.2){
-            mecanum.tankauto(0.0, 0.0);
-        }
-
-        else if (mytime>= 1.2 && mytime < 1.4){
-            mecanum.tankauto(-0.21,- 0.2);
-        }
-
-        else if (mytime>= 1.4 && mytime < 2.4){
-            mecanum.tankauto(0, 0);
-        }
-
-        else if (mytime>= 2.4 && mytime < 4.7){
-            
-            mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21);
-        }
-      
-        else if (mytime>= 4.7 && mytime < 6.7){
-            mecanum.mecanumauto(0, 0, 0, 0);
-        }
-        else  if (mytime>= 6.7 && mytime < 9.0){
-            mecanum.mecanumauto(0.2, -0.21, -0.2, 0.21);
-        }
-        
-        else if (mytime>= 9.0 && mytime < 10.2){
-             mecanum.mecanumauto(0, 0, 0, 0);
-        }
-        else  if (mytime>= 10.2 && mytime < 12.5){
-            mecanum.mecanumauto(0.2, 0-.21, -0.2, 0.21);
-        }
-
-        else  if (mytime>= 12.5 && mytime < 13){
-             mecanum.mecanumauto(0, 0, 0, 0);
-        }
-        else  if (mytime>= 13 && mytime < 15.4){
-              mecanum.mecanumauto(-0.2, 0.21, 0.2, -0.21);
-        }
-        
-        
-        else{
-            mecanum.tankauto(0, 0);
-            mecanum.mecanumauto(0, 0, 0, 0);
-            moutake.setoutakespeed(0);
+     
+       if (mytime >= 0.0 && mytime <1.5){
+            posoutake.position_outake(30.0);
+            moutake.setoutakespeed(1);
+       }
+       else if (mytime >= 1.5 && mytime <1.7){
+            intake.velocities(-1);
+            posoutake.setposspeed(0.0);
+       }
+       else if (mytime >= 1.7 && mytime <3.7){
             intake.velocities(0);
-            
-          } */
-       
+            moutake.setoutakespeed(0);
+            posintake.autointake();
+       }
+       else if  (mytime >= 3.7 && mytime <4.2){
+            mecanum.tankauto(0.42, 0.40);
+            posintake.vel(0);
+            intake.velocities(.8);
+       }
+       else if (mytime >= 4.2 && mytime <4.7){
+            mecanum.tankauto(0.0, 0.0);
+       }
+       else if (mytime >= 4.7 && mytime <5){
+            mecanum.tankauto(-0.41, -0.4);
+            posoutake.position_outake(20);
+       }
+       else if (mytime >= 5 && mytime < 6.4){
+            intake.velocities(0);
+            mecanum.tankauto(0.0, 0.0);
+            posoutake.setposspeed(0.0);
+            posintake.autoreintake();
+            moutake.setoutakespeed(1);
+       }
+       else if  (mytime >= 6.4 && mytime <7){
+            posintake.vel(0);
+            posoutake.position_outake(45);
+       }
+       else if (mytime >= 7 && mytime <7.2){
+            intake.velocities(-1);
+       }
 
+
+       else{
+        intake.velocities(0);
+        posintake.vel(0);
+        mecanum.tankauto(0.0, 0.0);
+        moutake.setoutakespeed(0);
+        posoutake.setposspeed(0);
+       }
+
+
+       
+    
     }
 
     @Override

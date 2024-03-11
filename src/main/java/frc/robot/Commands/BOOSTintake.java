@@ -28,6 +28,7 @@ public class BOOSTintake extends Command{
         if (posintake.angle() > 105) {
             posintake.position_intake(angle);
             SmartDashboard.putBoolean("Intake Ready", false);
+            
         }
         else if (posintake.angle() > 25 && posintake.angle() < 35) {
             posintake.vel(-0.03472);

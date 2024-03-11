@@ -39,7 +39,8 @@ public class DriveMecos extends SubsystemBase{
 
         navX.setAngleAdjustment(-180);
 
-        CameraServer.startAutomaticCapture("Camera", 0);
+        //CameraServer.startAutomaticCapture("Camera", 0);
+        CameraServer.startAutomaticCapture("Camera2", 0);
     }
 
     public void resetGyro() {

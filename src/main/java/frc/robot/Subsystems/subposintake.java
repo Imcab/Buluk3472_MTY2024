@@ -40,6 +40,37 @@ public class subposintake extends SubsystemBase{
     public void position_intake (double angle){    
         m_posintake.set(PIDintake.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));
     }
+
+    public void autoreintake(){
+        if (angle() < 160) {
+
+            position_intake(165);
+
+         }
+         else if (angle() > 200 && angle() < 205) {
+             vel(0.03472);
+             
+         }
+         else {
+            vel(0);
+            
+         }
+         
+    }
+    public void autointake(){
+        if (angle() > 105) {
+            position_intake(100);
+   
+            
+        }
+        else if (angle() > 25 && angle() < 35) {
+            vel(-0.03472);
+            
+        }
+        else {
+            vel(0);
+        }
+    }
     
 
     @Override

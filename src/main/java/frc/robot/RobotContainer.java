@@ -2,7 +2,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Commands.autotridente;
@@ -46,7 +45,7 @@ public class RobotContainer {
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
-  private final Command autotridente = new autotridente(mecanum, posoutake, intake, moutake);
+  private final Command autotridente = new autotridente(mecanum, posoutake, intake, moutake, posintake);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -55,7 +54,7 @@ public class RobotContainer {
     /*m_chooser.addOption("Auto left", Autoleft);
     m_chooser.addOption("Auto right", Auto_right); */
    
-    SmartDashboard.putData(m_chooser);
+   // SmartDashboard.putData(m_chooser);
 
     driverobot cmdDriverobot = new driverobot(mecanum,
 
@@ -117,7 +116,7 @@ public class RobotContainer {
 
     mechjoytick.y().whileTrue(new PIDoutake(posoutake, 30.00)); //amp
 
-    mechjoytick.b().whileTrue(new PIDoutake(posoutake, 40.00)); //espiker
+    mechjoytick.b().whileTrue(new PIDoutake(posoutake, 34)); //espiker estaba en 38
       
   }
   
