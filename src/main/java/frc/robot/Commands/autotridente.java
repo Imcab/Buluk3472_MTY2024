@@ -49,43 +49,43 @@ public class autotridente extends Command{
         // cargar outake 1 seg
         // CAMBIA LAS PAUSAS :'v
      
-       if (mytime >= 0.0 && mytime <1.5){
+       if (mytime >= 0.0 && mytime <2.0){
             posoutake.position_outake(30.0);
             moutake.setoutakespeed(1);
        }
-       else if (mytime >= 1.5 && mytime <1.7){
+       else if (mytime >= 2.0 && mytime <2.2){
             intake.velocities(-1);
             posoutake.setposspeed(0.0);
        }
-       else if (mytime >= 1.7 && mytime <3.7){
+       else if (mytime >= 2.2 && mytime <4.2){
             intake.velocities(0);
             moutake.setoutakespeed(0);
             posintake.autointake();
        }
-       else if  (mytime >= 3.7 && mytime <4.2){
+       else if  (mytime >= 4.2 && mytime <4.7){
             mecanum.tankauto(0.42, 0.40);
             posintake.vel(0);
             intake.velocities(.8);
        }
-       else if (mytime >= 4.2 && mytime <4.7){
+       else if (mytime >= 4.7 && mytime <5.2){
             mecanum.tankauto(0.0, 0.0);
        }
-       else if (mytime >= 4.7 && mytime <5){
+       else if (mytime >= 5.2 && mytime <5.5){
             mecanum.tankauto(-0.41, -0.4);
             posoutake.position_outake(20);
        }
-       else if (mytime >= 5 && mytime < 6.4){
+       else if (mytime >= 5.5&& mytime < 6.9){
             intake.velocities(0);
             mecanum.tankauto(0.0, 0.0);
             posoutake.setposspeed(0.0);
             posintake.autoreintake();
             moutake.setoutakespeed(1);
        }
-       else if  (mytime >= 6.4 && mytime <7){
+       else if  (mytime >= 6.9 && mytime <7.5){
             posintake.vel(0);
             posoutake.position_outake(45);
        }
-       else if (mytime >= 7 && mytime <7.2){
+       else if (mytime >= 7.5 && mytime <7.7){
             intake.velocities(-1);
        }
 

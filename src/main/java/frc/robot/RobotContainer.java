@@ -17,6 +17,8 @@ import frc.robot.Commands.driverobot;
 import frc.robot.Commands.BOOSTintake;
 import frc.robot.Commands.BOOSTREintake;
 import frc.robot.Commands.PIDoutake;
+import frc.robot.Commands.autotest;
+import frc.robot.Commands.autotest2;
 import frc.robot.Subsystems.subcolgador1;
 import frc.robot.Subsystems.subcolgador2;
 import frc.robot.Subsystems.subintake;
@@ -46,6 +48,10 @@ public class RobotContainer {
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
   private final Command autotridente = new autotridente(mecanum, posoutake, intake, moutake, posintake);
+
+  private final Command autotest = new autotest(mecanum, posoutake, intake, moutake, posintake);
+
+  private final Command autotest2 = new autotest2(mecanum, posoutake, intake, moutake, posintake);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -121,7 +127,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    return autotridente;
+    return autotest2;
     /*return new SequentialCommandGroup(
       new WaitCommand(7),Autoleft
       
