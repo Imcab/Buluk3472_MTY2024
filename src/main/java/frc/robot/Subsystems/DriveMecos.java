@@ -5,12 +5,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.constants.driveconst;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.math.geometry.Rotation2d;
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-
 
 public class DriveMecos extends SubsystemBase{
 
@@ -20,10 +14,6 @@ public class DriveMecos extends SubsystemBase{
     private int FrenteDerid = driveconst.fd_id;
     private int AtrasIzqid = driveconst.ai_id;
     private int AtrasDerid = driveconst.ad_id;
-
-    Rotation2d gyroangle;
-
-    private AHRS navX;
 
     public DriveMecos(){
 
@@ -35,24 +25,9 @@ public class DriveMecos extends SubsystemBase{
         FrentIzq.setInverted(true);
         AtrasIzq.setInverted(true);
     
-        navX = new AHRS(SPI.Port.kMXP);
-
-        navX.setAngleAdjustment(-180);
 
         CameraServer.startAutomaticCapture("Camera", 0);
         
-    }
-
-    public void resetGyro() {
-        navX.reset();
-    }
-
-    public Rotation2d anglecampo (){
-        return new Rotation2d(navX.getAngle());
-    }
-
-    public double angle(){
-       return navX.getAngle();
     }
 
     public void driveMecos(double theta, double power, double turn){
@@ -94,8 +69,6 @@ public class DriveMecos extends SubsystemBase{
 
     @Override
     public void periodic(){
-
-        SmartDashboard.putNumber("NavX", angle());
 
     }
   

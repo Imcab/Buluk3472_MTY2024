@@ -2,9 +2,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.Commands.autotridente;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.colgador1;
 import frc.robot.Commands.colgador1inv;
@@ -12,13 +12,14 @@ import frc.robot.Commands.colgador2;
 import frc.robot.Commands.colgador2inv;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
+import frc.robot.Commands.composintake;
 import frc.robot.Commands.composout;
 import frc.robot.Commands.driverobot;
-import frc.robot.Commands.BOOSTintake;
-import frc.robot.Commands.BOOSTREintake;
+import frc.robot.Commands.onepiece;
+import frc.robot.Commands.pieceOut;
+import frc.robot.Commands.tridente;
+import frc.robot.Commands.twopieces;
 import frc.robot.Commands.PIDoutake;
-import frc.robot.Commands.autotest;
-import frc.robot.Commands.autotest2;
 import frc.robot.Subsystems.subcolgador1;
 import frc.robot.Subsystems.subcolgador2;
 import frc.robot.Subsystems.subintake;
@@ -47,20 +48,23 @@ public class RobotContainer {
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
-  private final Command autotridente = new autotridente(mecanum, posoutake, intake, moutake, posintake);
+  private final Command onepiece = new onepiece(mecanum, posoutake, intake, moutake, posintake);
 
-  private final Command autotest = new autotest(mecanum, posoutake, intake, moutake, posintake);
+  private final Command twopieces = new twopieces(mecanum, posoutake, intake, moutake, posintake);
 
-  private final Command autotest2 = new autotest2(mecanum, posoutake, intake, moutake, posintake);
+  private final Command threepieces = new tridente(mecanum, posoutake, intake, moutake, posintake);
+
+  private final Command pieceOut = new pieceOut(mecanum, posoutake, intake, moutake, posintake);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
   public RobotContainer() {
-
-    /*m_chooser.addOption("Auto left", Autoleft);
-    m_chooser.addOption("Auto right", Auto_right); */
+    m_chooser.addOption("1 PIECE", onepiece);
+    m_chooser.addOption("SHOOT AND GO", pieceOut);
+    m_chooser.addOption("2 PIECES MIDDLE", twopieces);
+    m_chooser.setDefaultOption("3 PIECES MIDDLE", threepieces);
    
-   // SmartDashboard.putData(m_chooser);
+    SmartDashboard.putData(m_chooser);
 
     driverobot cmdDriverobot = new driverobot(mecanum,
 
@@ -110,28 +114,25 @@ public class RobotContainer {
  
     mechjoytick.a().whileTrue(new comintake(intake, 0.9));
 
-    mechjoytick.x().whileTrue(new comintake(intake, -0.9));
+    mechjoytick.x().whileTrue(new comintake(intake, -1.0));
     
     driverjoytick.rightBumper().whileTrue(new colgador1(colgador1, 1.0));
 
     driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
 
-    mechjoytick.rightBumper().whileTrue (new ParallelCommandGroup(new BOOSTREintake(posintake,  165),  new PIDoutake(posoutake, 20.00)));
+   // mechjoytick.rightBumper().whileTrue (new ParallelCommandGroup(new BOOSTREintake(posintake,  145),  new PIDoutake(posoutake, 20.00)));
+    mechjoytick.rightBumper().whileTrue(new composintake(posintake, 0.3));
+     mechjoytick.leftBumper().whileTrue(new composintake(posintake, -0.3));
+   // mechjoytick.leftBumper().whileTrue(new ParallelCommandGroup(new BOOSTintake(posintake,  100), new PIDoutake(posoutake, 20.00))); 
 
-    mechjoytick.leftBumper().whileTrue(new ParallelCommandGroup(new BOOSTintake(posintake,  100), new PIDoutake(posoutake, 20.00))); 
+    mechjoytick.y().whileTrue(new PIDoutake(posoutake, 29.8)); //amp
 
-    mechjoytick.y().whileTrue(new PIDoutake(posoutake, 30.00)); //amp
-
-    mechjoytick.b().whileTrue(new PIDoutake(posoutake, 34)); //espiker estaba en 38
+    mechjoytick.b().whileTrue(new PIDoutake(posoutake, 37 )); //espiker estaba en 38
       
   }
   
   public Command getAutonomousCommand() {
-    return autotest2;
-    /*return new SequentialCommandGroup(
-      new WaitCommand(7),Autoleft
-      
-    );*/
+    return m_chooser.getSelected();
   }
   
 }

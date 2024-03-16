@@ -30,6 +30,10 @@ public class suboutake extends SubsystemBase{
             outake2.set(outspeed);
 
         }
+        public void ampspeed(double speed){
+            outake1.set(speed * 0.82);
+            outake2.set(speed);
+        }
 
         
 }

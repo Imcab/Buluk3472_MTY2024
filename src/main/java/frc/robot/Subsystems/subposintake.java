@@ -23,7 +23,7 @@ public class subposintake extends SubsystemBase{
     double kD = 0.0;
     int encBits ;
     double angulo_encoder;
-    double offset_encoder = 10;
+    double offset_encoder = 310;
     
 
     public subposintake(){
@@ -42,13 +42,13 @@ public class subposintake extends SubsystemBase{
     }
 
     public void autoreintake(){
-        if (angle() < 160) {
+        if (angle() < 140) {
 
-            position_intake(165);
+            position_intake(145);
 
          }
-         else if (angle() > 200 && angle() < 205) {
-             vel(0.03472);
+         else if (angle() > 180 && angle() < 190) {
+             vel(0.0);
              
          }
          else {
@@ -64,7 +64,7 @@ public class subposintake extends SubsystemBase{
             
         }
         else if (angle() > 25 && angle() < 35) {
-            vel(-0.03472);
+            vel(0.0);
             
         }
         else {
