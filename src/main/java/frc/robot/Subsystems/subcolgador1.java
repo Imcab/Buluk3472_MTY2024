@@ -1,3 +1,7 @@
+///////////SUBSISTEMA DEL COLGADOR "1" (CAN ID: 12)////////////////
+
+
+
 package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -16,7 +20,7 @@ public class subcolgador1 extends SubsystemBase {
         //cold1 id 12, cold2 id 13
         colgador1 = new CANSparkMax(Idcolg, MotorType.kBrushless);
         colgador1.setInverted(true);
-       // CameraServer.startAutomaticCapture("Camera2", 1);
+       
     }
 
     public void setcolgador1(double speed){

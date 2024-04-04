@@ -1,3 +1,5 @@
+///////////SUBSISTEMA DEL INTAKE (PARA TRAGAR O ESCUPIR PIEZA)////////////////
+
 package frc.robot.Subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -12,15 +14,10 @@ public class subintake extends SubsystemBase {
     
     public subintake(){
         intake = new CANSparkMax(intkid, MotorType.kBrushless);
-
-        intake.setInverted(true);
-        
+        intake.setInverted(true);   
     }
-
     public void velocities(double speed){
         intake.set(speed);
-        
-
     }
     
 }

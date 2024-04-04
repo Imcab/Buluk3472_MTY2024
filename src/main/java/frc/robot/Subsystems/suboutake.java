@@ -1,3 +1,5 @@
+///////////SUBSISTEMA DE LAS LLANTAS DEL LANZADOR "OUTAKE" ////////////////
+
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,22 +20,20 @@ public class suboutake extends SubsystemBase{
 
         outake1.setInverted(true);
 
-        }
+    }
+    public void setoutakespeed(double outspeed){
+            outake1.set(outspeed);
+            outake2.set(outspeed);
 
+    }
+    public void ampspeed(double speed){
+            outake1.set(speed * 0.6);
+            outake2.set(speed);
+    }
     @Override
     public void periodic(){
 
     }
-
-        public void setoutakespeed(double outspeed){
-            outake1.set(outspeed);
-            outake2.set(outspeed);
-
-        }
-        public void ampspeed(double speed){
-            outake1.set(speed * 0.82);
-            outake2.set(speed);
-        }
 
         
 }

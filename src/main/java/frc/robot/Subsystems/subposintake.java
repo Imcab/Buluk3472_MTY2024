@@ -1,3 +1,7 @@
+/////////////SUBSISTEMA QUE BAJA O SUBE EL INTAKE //////////////////////////
+
+
+
 package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
@@ -23,12 +27,12 @@ public class subposintake extends SubsystemBase{
     double kD = 0.0;
     int encBits ;
     double angulo_encoder;
-    double offset_encoder = 310;
+    double offset_encoder = 115;
     
 
     public subposintake(){
         m_posintake = new CANSparkMax(posintid, MotorType.kBrushless);
-        encoderIntake = new AnalogInput(1);
+        encoderIntake = new AnalogInput(0);
         PIDintake = new PIDController(kP, kI, kD);
         
     }

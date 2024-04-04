@@ -3,12 +3,10 @@ package frc.robot;
 public final class constants {
 
     public static final class auto{
-        public static final double angle1 = 26.5;
-        public static final double angle2 = 41.5;
-        public static final double  angle3 = 43.5;
+        public static final double angle1 = 27.5;
+        public static final double angle2 = 38.5;
+        public static final double angle3 = 43.5;
     }
-
-    
 
     public static final class driveconst{
         

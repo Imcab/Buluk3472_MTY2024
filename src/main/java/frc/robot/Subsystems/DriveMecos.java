@@ -1,3 +1,7 @@
+///////////////SUBSISTEMA DEL MANEJO DEL CHASIS MECANUM //////////////////////////
+
+//////////////// SI SE INVIERTEN LOS EJES EN EL CONTROL, CHECAR EN EL * COMANDO DEL MECANUM (DRIVEROBOT)* /////////////////
+
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;

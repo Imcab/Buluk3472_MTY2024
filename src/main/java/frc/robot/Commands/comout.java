@@ -33,7 +33,7 @@ public class comout extends Command{
         }
        
        else if (gatder < 0.001 && gatizq > 0.001){
-            moutake.ampspeed(0.42);
+            moutake.ampspeed(0.38);
         }
         
         else{

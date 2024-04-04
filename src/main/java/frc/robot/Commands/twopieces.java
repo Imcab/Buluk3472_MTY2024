@@ -74,7 +74,7 @@ public class twopieces extends Command{
             moutake.setoutakespeed(1);
        }
        else if (mytime >= 3.7 && mytime <4.0){
-            mecanum.tankauto(-0.41, -0.4);
+            mecanum.tankauto(-0.52, -0.5);
             posoutake.position_outake(20);
        }
        else if (mytime >= 4.0&& mytime < 4.8){

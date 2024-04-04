@@ -24,10 +24,12 @@ public class driverobot extends Command{
 
     @Override
     public void execute(){
-
+        
+        //AQUI SE INVIERTEN LOS EJES DEL CONTROL/////////
         double velX = -X.get();
         double velY = Y.get();
         double velZ = -Z.get();
+        /////////////////////////////////////
 
         if (Math.abs(velX) < 0.05){
             velX = 0;
