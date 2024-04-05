@@ -17,13 +17,19 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.HPPMathLib;
 import frc.robot.constants.outakeconst;
 
-public class subpos extends SubsystemBase{
+public class suboutakeposicion extends SubsystemBase{
 
-    PIDController PIDOUT;
-
+    PIDController PIDOUT, PIDLIM;
+    ////////OUTAKE PID///////////////
     double kP = 0.016;
     double kI = 0.0;
     double kD = 0.0;
+    ////////LIMEILGHT PID//////////////
+    double kPLIM = 0.0063;
+    double kILIM = 0.0;
+    double kDLIM = 0.0;
+
+
     double encBits;
     double angulo_encoder;
     double offset_encoder = 12.29;
@@ -33,12 +39,14 @@ public class subpos extends SubsystemBase{
     private int poutid2 = outakeconst.posoutid2;
     AnalogInput encoderOutake; 
 
-    public subpos(){
+    public suboutakeposicion(){
         posout1 = new CANSparkMax(poutid, MotorType.kBrushless);
         posout2 = new CANSparkMax(poutid2, MotorType.kBrushless);
         encoderOutake = new AnalogInput(1);
 
         PIDOUT = new PIDController(kP, kI, kD);
+
+        PIDLIM = new PIDController(kPLIM, kILIM, kDLIM);
 
         posout2.setInverted(true);
     }
@@ -55,12 +63,10 @@ public class subpos extends SubsystemBase{
     }
 
     public void poslimelight (double TY){    
-        posout1.set(-(PIDOUT.calculate(TY , 0)));
-        posout2.set(-(PIDOUT.calculate(TY , 0)));
-        
+        posout1.set(-(PIDLIM.calculate(TY , 0)));
+        posout2.set(-(PIDLIM.calculate(TY , 0)));        
     }
    
-
     @Override
     public void periodic(){
         encBits = encoderOutake.getValue();
@@ -75,3 +81,4 @@ public class subpos extends SubsystemBase{
 }
 
 // :v
+// Codigo que se basa en el movimiento del outake

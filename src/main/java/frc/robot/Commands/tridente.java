@@ -5,13 +5,13 @@ import frc.robot.constants;
 import frc.robot.Subsystems.DriveMecos;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.suboutake;
-import frc.robot.Subsystems.subpos;
+import frc.robot.Subsystems.suboutakeposicion;
 import frc.robot.Subsystems.subposintake;
 
 public class tridente extends Command{
 
     DriveMecos mecanum;
-    subpos posoutake;
+    suboutakeposicion posoutake;
     suboutake moutake;
     subintake intake;
     subposintake posintake;
@@ -19,7 +19,7 @@ public class tridente extends Command{
     private double starttime;
     private double mytime;
 
-    public tridente(DriveMecos mecanum, subpos posoutake, subintake intake, suboutake moutake, subposintake posintake){
+    public tridente(DriveMecos mecanum, suboutakeposicion posoutake, subintake intake, suboutake moutake, subposintake posintake){
        
         this.mecanum = mecanum;
         this.posoutake = posoutake;

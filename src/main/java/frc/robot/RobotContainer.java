@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.setangle;
+import frc.robot.Commands.colgador1inv;
 import frc.robot.Commands.colgador2inv;
+import frc.robot.Commands.colgador2;
+import frc.robot.Commands.colgador1;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
 import frc.robot.Commands.composintake;
@@ -22,7 +25,7 @@ import frc.robot.Subsystems.subcolgador2;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.limelight;
 import frc.robot.Subsystems.suboutake;
-import frc.robot.Subsystems.subpos;
+import frc.robot.Subsystems.suboutakeposicion;
 import frc.robot.Subsystems.subposintake;
 
 
@@ -33,13 +36,13 @@ public class RobotContainer {
 
   private final suboutake moutake = new suboutake();
 
-  private final subpos posoutake = new subpos();
+  private final suboutakeposicion posoutake = new suboutakeposicion();
 
   private final subintake intake = new subintake();
 
   private final subcolgador2 colgador2 = new subcolgador2();
 
-  //private final subcolgador1 colgador1= new subcolgador1();
+  private final subcolgador1 colgador1= new subcolgador1();
 
   private final subposintake posintake = new subposintake();
 
@@ -88,13 +91,13 @@ public class RobotContainer {
 
     });
 
-    //colgador1.setDefaultCommand(new colgador1inv(colgador1,
+    colgador1.setDefaultCommand(new colgador1inv(colgador1,
   
-    //()-> driverjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value)
+    ()-> driverjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value)
  
-    //){
+    ){
 
-    //});
+    });
 
     colgador2.setDefaultCommand(new colgador2inv(colgador2,
   
@@ -120,9 +123,9 @@ public class RobotContainer {
 
     mechjoytick.x().whileTrue(new comintake(intake, -0.9));
     
-   //driverjoytick.rightBumper().whileTrue(new colgador1(colgador1, 1.0));
+    driverjoytick.rightBumper().whileTrue(new colgador1(colgador1, 1.0));
 
-    //driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
+    driverjoytick.leftBumper().whileTrue(new colgador2(colgador2, 1.0));
 
    //mechjoytick.rightBumper().whileTrue (new ParallelCommandGroup(new BOOSTREintake(posintake,  145),  new PIDoutake(posoutake, 20.00)));
 

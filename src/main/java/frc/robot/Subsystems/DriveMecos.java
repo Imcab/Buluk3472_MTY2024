@@ -61,7 +61,8 @@ public class DriveMecos extends SubsystemBase{
         FrentIzq.set(speedizq);
         FrentDer.set(speedder);
         AtrasIzq.set(speedizq);
-        AtrasDer.set(speedder);     
+        AtrasDer.set(speedder);   
+        //Este modo se ocupa para autonomo, donde les das velocidades iguales para manejarlo como tanque   
     }    
 
     public void mecanumauto (double speedfi, double speedfd, double speedai,double speedad){
@@ -69,6 +70,7 @@ public class DriveMecos extends SubsystemBase{
         FrentDer.set(speedfd);
         AtrasIzq.set(speedai);
         AtrasDer.set(speedad);
+        //Le das velocidades independientes a cada llanta, para modo autonomo, para moverse en cangrejo 
     }
 
     @Override

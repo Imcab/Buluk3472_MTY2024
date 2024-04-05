@@ -2,14 +2,14 @@ package frc.robot.Commands;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Subsystems.subpos;
+import frc.robot.Subsystems.suboutakeposicion;
 
 public class composout extends Command{
 
-    subpos posoutake;
+    suboutakeposicion posoutake;
     Supplier<Double>posspeed;
 
-    public composout(subpos posoutake, Supplier<Double>posspeed){
+    public composout(suboutakeposicion posoutake, Supplier<Double>posspeed){
 
         this.posoutake = posoutake;
         this.posspeed = posspeed;
