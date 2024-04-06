@@ -1,7 +1,7 @@
+
 //////////////SUBSISTEMA DE LA VISIÓN LIMELIGHT////////////////////////
 
 //////////AQUI SE DA LA LECTURA Y LOS DATOS//////////////////////////////
-
 
 package frc.robot.Subsystems;
 
@@ -57,6 +57,7 @@ public class limelight extends SubsystemBase{
             return true;
         }
     }
+    
     @Override
     public void periodic(){
 

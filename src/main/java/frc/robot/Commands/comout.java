@@ -16,7 +16,6 @@ public class comout extends Command{
         this.speed2 = speed2;
      
         addRequirements(moutake);        
-
     }
 
     @Override

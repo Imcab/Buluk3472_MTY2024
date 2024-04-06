@@ -1,3 +1,4 @@
+
 ///////////////SUBSISTEMA DEL MANEJO DEL CHASIS MECANUM //////////////////////////
 
 //////////////// SI SE INVIERTEN LOS EJES EN EL CONTROL, CHECAR EN EL * COMANDO DEL MECANUM (DRIVEROBOT)* /////////////////
@@ -30,8 +31,7 @@ public class DriveMecos extends SubsystemBase{
         AtrasIzq.setInverted(true);
     
 
-        CameraServer.startAutomaticCapture("Camera", 0);
-        
+        CameraServer.startAutomaticCapture("Camera", 0);    
     }
 
     public void driveMecos(double theta, double power, double turn){
@@ -55,7 +55,7 @@ public class DriveMecos extends SubsystemBase{
         AtrasIzq.set(aIv);
         AtrasDer.set(aDv);
 
-}
+    }
 
     public void tankauto (double speedder, double speedizq){
         FrentIzq.set(speedizq);

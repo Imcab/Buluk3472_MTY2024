@@ -13,7 +13,6 @@ public class composintake extends Command{
         this.posintake = posintake;
         this.speed = speed;
         addRequirements(posintake);        
-
     }
 
     @Override
@@ -34,6 +33,5 @@ public class composintake extends Command{
     public boolean isFinished(){
         return false;
     }
-
-    
+   
 }

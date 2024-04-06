@@ -1,3 +1,4 @@
+
 ///////////SUBSISTEMA DE LAS LLANTAS DEL LANZADOR "OUTAKE" ////////////////
 
 package frc.robot.Subsystems;
@@ -19,21 +20,21 @@ public class suboutake extends SubsystemBase{
         outake2 = new CANSparkMax(outakeid2, MotorType.kBrushless);
 
         outake1.setInverted(true);
-
     }
+
     public void setoutakespeed(double outspeed){
-            outake1.set(outspeed);
-            outake2.set(outspeed);
+        outake1.set(outspeed);
+        outake2.set(outspeed);
+    }
 
-    }
     public void ampspeed(double speed){
-            outake1.set(speed * 0.6);
-            outake2.set(speed);
+        outake1.set(speed * 0.6);
+        outake2.set(speed);
     }
+
     @Override
     public void periodic(){
 
-    }
+    }      
 
-        
 }

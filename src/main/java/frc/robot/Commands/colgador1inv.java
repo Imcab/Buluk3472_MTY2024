@@ -18,8 +18,7 @@ public class colgador1inv extends Command{
     }
 
     @Override
-    public void initialize(){
-        
+    public void initialize(){  
     }
 
     @Override
@@ -40,11 +39,9 @@ public class colgador1inv extends Command{
         colgador1.setcolgador1(0);
     }
 
-
     @Override
     public boolean isFinished(){
         return false;
     }
-
-    
+   
 }

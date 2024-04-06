@@ -15,7 +15,6 @@ public class composout extends Command{
         this.posspeed = posspeed;
 
         addRequirements(posoutake);
-
     }
 
     @Override

@@ -18,7 +18,6 @@ public class setangle extends Command{
 
     @Override
     public void initialize(){
-        
     }
     
     @Override
@@ -45,6 +44,6 @@ public class setangle extends Command{
         return false;
     } 
 
-// :v
-
 }
+
+// :v

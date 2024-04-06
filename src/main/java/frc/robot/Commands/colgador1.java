@@ -16,8 +16,7 @@ public class colgador1 extends Command{
     }
 
     @Override
-    public void initialize(){
-        
+    public void initialize(){   
     }
 
     @Override
@@ -26,7 +25,6 @@ public class colgador1 extends Command{
         double velocity = vel;
 
         colgador1.setcolgador1(velocity);
-
     }
 
     @Override

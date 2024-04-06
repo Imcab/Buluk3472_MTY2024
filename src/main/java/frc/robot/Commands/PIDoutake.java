@@ -17,7 +17,6 @@ public class PIDoutake extends Command{
 
     @Override
     public void initialize(){
-
     }
 
     @Override
@@ -28,7 +27,7 @@ public class PIDoutake extends Command{
         if(posoutake.angle() == angle){
             posoutake.setposspeed(0);
         }
-        
+         
     }
 
     @Override

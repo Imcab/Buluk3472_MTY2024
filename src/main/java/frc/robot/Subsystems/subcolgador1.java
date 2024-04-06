@@ -1,6 +1,5 @@
+
 ///////////SUBSISTEMA DEL COLGADOR "1" (CAN ID: 12)////////////////
-
-
 
 package frc.robot.Subsystems;
 
@@ -20,7 +19,6 @@ public class subcolgador1 extends SubsystemBase {
         //cold1 id 12, cold2 id 13
         colgador1 = new CANSparkMax(Idcolg, MotorType.kBrushless);
         colgador1.setInverted(true);
-       
     }
 
     public void setcolgador1(double speed){
@@ -28,8 +26,7 @@ public class subcolgador1 extends SubsystemBase {
     }
     
     @Override
-    public void periodic(){
-        
+    public void periodic(){    
     }
    
 } 

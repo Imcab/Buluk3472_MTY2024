@@ -1,6 +1,5 @@
+
 /////////////SUBSISTEMA QUE BAJA O SUBE EL INTAKE //////////////////////////
-
-
 
 package frc.robot.Subsystems;
 
@@ -29,12 +28,10 @@ public class subposintake extends SubsystemBase{
     double angulo_encoder;
     double offset_encoder = 115;
     
-
     public subposintake(){
         m_posintake = new CANSparkMax(posintid, MotorType.kBrushless);
         encoderIntake = new AnalogInput(0);
         PIDintake = new PIDController(kP, kI, kD);
-        
     }
 
     public void vel (double speed ){
@@ -58,9 +55,9 @@ public class subposintake extends SubsystemBase{
          else {
             vel(0);
             
-         }
-         
+        }
     }
+
     public void autointake(){
         if (angle() > 105) {
             position_intake(100);
@@ -76,7 +73,6 @@ public class subposintake extends SubsystemBase{
         }
     }
     
-
     @Override
     public void periodic(){
         encBits = encoderIntake.getValue();

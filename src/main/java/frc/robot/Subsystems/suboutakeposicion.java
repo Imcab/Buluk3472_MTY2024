@@ -29,7 +29,6 @@ public class suboutakeposicion extends SubsystemBase{
     double kILIM = 0.0;
     double kDLIM = 0.0;
 
-
     double encBits;
     double angulo_encoder;
     double offset_encoder = 12.29;
@@ -58,8 +57,7 @@ public class suboutakeposicion extends SubsystemBase{
 
     public void position_outake (double angle){    
         posout1.set(PIDOUT.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));
-        posout2.set(PIDOUT.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));
-        
+        posout2.set(PIDOUT.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));  
     }
 
     public void poslimelight (double TY){    
@@ -81,4 +79,3 @@ public class suboutakeposicion extends SubsystemBase{
 }
 
 // :v
-// Codigo que se basa en el movimiento del outake

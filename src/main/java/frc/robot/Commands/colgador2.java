@@ -7,7 +7,6 @@ public class colgador2 extends Command{
     subcolgador2 colgador2;
     Double speed;
     
-
     public colgador2(subcolgador2 colgador2, Double speed){
 
         this.colgador2 = colgador2;
@@ -26,7 +25,6 @@ public class colgador2 extends Command{
         double vel = speed;
 
         colgador2.setcolgador2(vel);
-
     }
 
     @Override
@@ -34,11 +32,9 @@ public class colgador2 extends Command{
         colgador2.setcolgador2(0);
     }
 
-
     @Override
     public boolean isFinished(){
         return false;
     }
 
-    
 }

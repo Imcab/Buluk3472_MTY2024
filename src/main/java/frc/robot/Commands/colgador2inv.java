@@ -9,7 +9,6 @@ public class colgador2inv extends Command{
     subcolgador2 colgador2;
     Supplier<Double> speed;
     
-
     public colgador2inv(subcolgador2 colgador2, Supplier<Double> speed){
             this.colgador2 = colgador2;
             this.speed = speed;
@@ -31,7 +30,6 @@ public class colgador2inv extends Command{
         } else {
             colgador2.setcolgador2(0);
         }
-
     }
 
     @Override
@@ -44,5 +42,4 @@ public class colgador2inv extends Command{
         return false;
     }
 
-    
 }

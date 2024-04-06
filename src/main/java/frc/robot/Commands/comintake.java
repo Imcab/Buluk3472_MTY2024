@@ -12,7 +12,6 @@ public class comintake extends Command{
         this.intake = intake;
         this.speed = speed;
         addRequirements(intake);        
-
     }
 
     @Override
