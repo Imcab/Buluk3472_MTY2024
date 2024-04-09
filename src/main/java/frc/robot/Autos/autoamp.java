@@ -2,7 +2,6 @@ package frc.robot.Autos;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.DriveMecos;
-import frc.robot.Subsystems.limelight;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.suboutake;
 import frc.robot.Subsystems.suboutakeposicion;
@@ -74,12 +73,7 @@ public class autoamp extends Command{
             outpos.setposspeed(0);
         }
 
-
-
-
-
     }
-
     @Override
     public void end(boolean interrupted) {
         

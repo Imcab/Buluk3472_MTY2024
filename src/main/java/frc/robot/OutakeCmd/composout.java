@@ -1,4 +1,4 @@
-package frc.robot.Commands;
+package frc.robot.OutakeCmd;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,7 +29,7 @@ public class composout extends Command{
             speedpos = 0;
         }
 
-        posoutake.setposspeed(speedpos * 0.3);
+        posoutake.setposspeed(speedpos * 0.15);
     }
 
     @Override

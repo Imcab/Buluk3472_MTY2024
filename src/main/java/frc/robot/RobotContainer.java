@@ -6,24 +6,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.Commands.setangle;
-import frc.robot.Commands.colgador1inv;
-import frc.robot.Commands.colgador2inv;
-import frc.robot.Commands.colgador2;
 import frc.robot.Autos.outexit;
 import frc.robot.Autos.outexitder;
 import frc.robot.Autos.outexitizq;
-import frc.robot.Commands.PIDoutake;
-import frc.robot.Commands.colgador1;
-import frc.robot.Commands.comintake;
-import frc.robot.Commands.comout;
-import frc.robot.Commands.composintake;
-import frc.robot.Commands.composout;
-import frc.robot.Commands.driverobot;
+import frc.robot.ChasisCmd.driverobot;
+import frc.robot.ColgadorCmd.colgador1;
+import frc.robot.ColgadorCmd.colgador1inv;
+import frc.robot.ColgadorCmd.colgador2;
+import frc.robot.ColgadorCmd.colgador2inv;
 import frc.robot.Commands.onepiece;
 import frc.robot.Commands.pieceOut;
 import frc.robot.Commands.tridente;
 import frc.robot.Commands.twopieces;
+import frc.robot.IntakeCmd.comintake;
+import frc.robot.IntakeCmd.composintake;
+import frc.robot.LimelightCmd.setangle;
+import frc.robot.OutakeCmd.PIDoutake;
+import frc.robot.OutakeCmd.comout;
+import frc.robot.OutakeCmd.composout;
 import frc.robot.Subsystems.DriveMecos;
 import frc.robot.Subsystems.subcolgador1;
 import frc.robot.Subsystems.subcolgador2;
@@ -32,8 +32,6 @@ import frc.robot.Subsystems.limelight;
 import frc.robot.Subsystems.suboutake;
 import frc.robot.Subsystems.suboutakeposicion;
 import frc.robot.Subsystems.subposintake;
-
-
 
 public class RobotContainer {
 
@@ -73,17 +71,14 @@ public class RobotContainer {
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
   public RobotContainer() {
-    m_chooser.addOption("1 PIECE", onepiece);
-    m_chooser.addOption("SHOOT AND GO", pieceOut);
-    m_chooser.addOption("2 PIECES MIDDLE", twopieces);
-    m_chooser.setDefaultOption("3 PIECES MIDDLE", threepieces);
+    //m_chooser.addOption("1 PIECE", onepiece);
+    m_chooser.addOption("1PZ EXIT RIGHT", outexitder);
+    m_chooser.addOption("1PZ EXIT LEFT", outexitizq);
+    m_chooser.setDefaultOption("1PZ EXIT MIDDLE", outexit);
    
     SmartDashboard.putData(m_chooser);
-    limelight.getDefaultCommand(); 
-    double x= limelight.getX(); 
-    SmartDashboard.putNumber("x", x); 
-
-
+    //limelight.getDefaultCommand(); 
+  
     driverobot cmdDriverobot = new driverobot(mecanum,
 
       ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftX.value),
@@ -152,8 +147,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    return outexit;
-    //m_chooser.getSelected();
+    return m_chooser.getSelected();
   }
   
 } 
