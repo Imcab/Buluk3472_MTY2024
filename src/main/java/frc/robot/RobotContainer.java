@@ -10,6 +10,9 @@ import frc.robot.Commands.setangle;
 import frc.robot.Commands.colgador1inv;
 import frc.robot.Commands.colgador2inv;
 import frc.robot.Commands.colgador2;
+import frc.robot.Autos.outexit;
+import frc.robot.Autos.outexitder;
+import frc.robot.Autos.outexitizq;
 import frc.robot.Commands.PIDoutake;
 import frc.robot.Commands.colgador1;
 import frc.robot.Commands.comintake;
@@ -60,6 +63,12 @@ public class RobotContainer {
   private final Command threepieces = new tridente(mecanum, posoutake, intake, moutake, posintake);
 
   private final Command pieceOut = new pieceOut(mecanum, posoutake, intake, moutake, posintake);
+
+  private final Command outexit = new outexit(intake, moutake, mecanum, limelight, posoutake);
+
+  private final Command outexitder = new outexitder(intake, moutake, mecanum, limelight, posoutake);
+
+  private final Command outexitizq = new outexitizq(intake, moutake, mecanum, limelight, posoutake);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -143,7 +152,8 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    return outexit;
+    //m_chooser.getSelected();
   }
   
 } 

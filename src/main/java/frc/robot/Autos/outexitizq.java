@@ -7,7 +7,7 @@ import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.suboutake;
 import frc.robot.Subsystems.suboutakeposicion;
 
-public class outexit extends Command{
+public class outexitizq extends Command{
 
     subintake intake;
     suboutake outake;
@@ -20,7 +20,7 @@ public class outexit extends Command{
     private double mytime;
 
 
-    public outexit(subintake intake, suboutake outake, DriveMecos chasis, limelight autolimelight, suboutakeposicion outpos){
+    public outexitizq(subintake intake, suboutake outake, DriveMecos chasis, limelight autolimelight, suboutakeposicion outpos){
         this.intake = intake;
         this.outake = outake;
         this.chasis = chasis;
@@ -67,6 +67,16 @@ public class outexit extends Command{
         else if (mytime >= 3.0 && mytime <3.8){
             chasis.tankauto(0.11,0.1);
             
+        }
+         else if (mytime >= 3.8 && mytime <4.2){
+            chasis.tankauto(0,-0.91);
+            
+        }
+        else if (mytime >= 4.2 && mytime <4.3){
+            chasis.tankauto(0.0, 0.0);
+        }
+        else if (mytime >= 4.3 && mytime <5.0){
+            chasis.tankauto(0.21,0.2);
         }
         
         else{

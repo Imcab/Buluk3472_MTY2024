@@ -51,7 +51,7 @@ public class autoamp extends Command{
         }
          else if (mytime >= 4.0 && mytime < 4.3 ){
             chasis.tankauto(0.11, 0.1);
-        }
+        } 
         else if (mytime >= 4.3 && mytime < 4.5){
             chasis.tankauto(0.06, 0.05);
             outpos.position_outake(242);
