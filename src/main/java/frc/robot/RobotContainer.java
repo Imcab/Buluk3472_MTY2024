@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.setangle;
 import frc.robot.Commands.colgador1inv;
 import frc.robot.Commands.colgador2inv;
 import frc.robot.Commands.colgador2;
+import frc.robot.Commands.PIDoutake;
 import frc.robot.Commands.colgador1;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
@@ -129,12 +131,12 @@ public class RobotContainer {
 
    //mechjoytick.rightBumper().whileTrue (new ParallelCommandGroup(new BOOSTREintake(posintake,  145),  new PIDoutake(posoutake, 20.00)));
 
-    mechjoytick.rightBumper().whileTrue(new composintake(posintake, 0.3));
-    mechjoytick.leftBumper().whileTrue(new composintake(posintake, -0.3));
+    mechjoytick.rightBumper().whileTrue(new ParallelCommandGroup(new composintake(posintake, 0.3),new PIDoutake(posoutake, 20.00)));
+    mechjoytick.leftBumper().whileTrue(new ParallelCommandGroup(new composintake(posintake, -0.3),new PIDoutake(posoutake, 20.00)));
 
    // mechjoytick.leftBumper().whileTrue(new ParallelCommandGroup(new BOOSTintake(posintake,  100), new PIDoutake(posoutake, 20.00))); 
 
-   // mechjoytick.y().whileTrue(new PIDoutake(posoutake, 29.8)); //amp
+    mechjoytick.y().whileTrue(new PIDoutake(posoutake, 242)); //amp
 
     mechjoytick.b().whileTrue(new setangle(posoutake, limelight)); 
       
@@ -144,4 +146,4 @@ public class RobotContainer {
     return m_chooser.getSelected();
   }
   
-}
+} 

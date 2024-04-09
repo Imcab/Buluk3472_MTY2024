@@ -7,9 +7,14 @@ package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import frc.robot.constants.driveconst;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveMecos extends SubsystemBase{
 
@@ -19,6 +24,15 @@ public class DriveMecos extends SubsystemBase{
     private int FrenteDerid = driveconst.fd_id;
     private int AtrasIzqid = driveconst.ai_id;
     private int AtrasDerid = driveconst.ad_id;
+
+    
+    PIDController chasis_PID;
+    double kP = 0.01;
+    double kI = 0.0;
+    double kD = 0.001;
+
+    AHRS NavX;
+    double NavxOFFSET = 0;
 
     public DriveMecos(){
 
@@ -31,7 +45,13 @@ public class DriveMecos extends SubsystemBase{
         AtrasIzq.setInverted(true);
     
 
-        CameraServer.startAutomaticCapture("Camera", 0);    
+        CameraServer.startAutomaticCapture("Camera", 0);  
+        
+        NavX = new AHRS(SPI.Port.kMXP);
+        NavX.setAngleAdjustment(NavxOFFSET);
+
+        chasis_PID = new PIDController(kP, kI, kD);
+
     }
 
     public void driveMecos(double theta, double power, double turn){
@@ -73,9 +93,30 @@ public class DriveMecos extends SubsystemBase{
         //Le das velocidades independientes a cada llanta, para modo autonomo, para moverse en cangrejo 
     }
 
+    public double getAngle(){
+        return NavX.getAngle();
+    }
+
+    public void chasis_poss (double angle, double speed){    
+
+        if ((angle-2)< getAngle()|| (angle+2)>getAngle()){
+        FrentIzq.set(-speed);
+        FrentDer.set(speed);  
+        AtrasIzq.set(-speed);  
+        AtrasDer.set(speed);  
+        
+        } 
+        else {
+            FrentIzq.set(0);
+            FrentDer.set(0);
+            AtrasIzq.set(0);
+            AtrasDer.set(0);
+        }
+    }
+
     @Override
     public void periodic(){
-
+        SmartDashboard.putNumber("NavX", getAngle());
     }
   
 }

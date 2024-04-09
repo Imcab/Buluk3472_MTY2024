@@ -1,7 +1,7 @@
 
 ////////// SUBSISTEMA QUE MUEVE LA POSICIÓN DEL OUTAKE ///////////////////////////////
 
-///////////////SE ENCUENTRA EL PID POR ENCODER Y EL PID POR LIMELIGHT/////////////////
+///////////////SE ENCUENTRA EL PID POR ENCODER (sin uso) Y EL PID POR LIMELIGHT (em uso actual)/////////////////
 
 ///////////////// FALLAS EN EL PID O EN LA ANGULACIÓN CHECAR AQUI ///////////////////
 
@@ -23,7 +23,7 @@ public class suboutakeposicion extends SubsystemBase{
     ////////OUTAKE PID///////////////
     double kP = 0.016;
     double kI = 0.0;
-    double kD = 0.0;
+    double kD = 0.001;
     ////////LIMEILGHT PID//////////////
     double kPLIM = 0.0063;
     double kILIM = 0.0;
@@ -31,7 +31,7 @@ public class suboutakeposicion extends SubsystemBase{
 
     double encBits;
     double angulo_encoder;
-    double offset_encoder = 12.29;
+    double offset_encoder = 289.60;
 
     CANSparkMax posout1, posout2;
     private int poutid = outakeconst.posoutid;
@@ -54,6 +54,8 @@ public class suboutakeposicion extends SubsystemBase{
         posout1.set(oposspeed); 
         posout2.set(oposspeed);
     }
+
+    
 
     public void position_outake (double angle){    
         posout1.set(PIDOUT.calculate(HPPMathLib.MinAngle(angulo_encoder, angle), 0));

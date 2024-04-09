@@ -27,10 +27,11 @@ public class suboutake extends SubsystemBase{
         outake2.set(outspeed);
     }
 
-    public void ampspeed(double speed){
-        outake1.set(speed * 0.6);
-        outake2.set(speed);
+    public void amp(double speed, double speed2){
+        outake1.set(speed);
+        outake2.set(speed2);
     }
+    
 
     @Override
     public void periodic(){
