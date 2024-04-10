@@ -75,52 +75,6 @@ public class outexit extends Command{
             outake.setoutakespeed(0);
             outpos.setposspeed(0);
         }
-        
-
-       /*  if (mytime >= 0.0 && mytime <1.0){
-            chasis.tankauto(0.11,0.1);
-            outpos.position_outake(48.5);
-        }
-
-        else if (mytime >= 1.0 && mytime < 1.5){
-             outpos.setposspeed(0); 
-            outake.setoutakespeed(1.0);
-            chasis.tankauto(0.0,0.0);
-        }
-         else if (mytime >= 1.5 && mytime < 2.5){
-            outake.setoutakespeed(1.0);
-    
-            if (TargetAvaliable = true){ 
-            outpos.poslimelight(autolimeght.getY());    
-            } 
-            else{
-           outpos.setposspeed(0); 
-            }
-                    
-        
-        } 
-        else if (mytime >= 2.5 && mytime < 3.0){
-            
-            intake.velocities(-0.9);
-
-            if (TargetAvaliable = true){ 
-            outpos.poslimelight(autolimeght.getY());    
-            } 
-            
-            outake.setoutakespeed(1.0);
-
-        }
-
-        else{
-            intake.velocities(0);
-            chasis.tankauto(0.0, 0.0);
-            outake.setoutakespeed(0);
-            outpos.setposspeed(0);
-        }*/
-
-
-
-
 
     }
 

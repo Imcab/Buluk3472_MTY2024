@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Autos.kickPieces;
 import frc.robot.Autos.outexit;
 import frc.robot.Autos.outexitder;
 import frc.robot.Autos.outexitizq;
@@ -14,10 +15,6 @@ import frc.robot.ColgadorCmd.colgador1;
 import frc.robot.ColgadorCmd.colgador1inv;
 import frc.robot.ColgadorCmd.colgador2;
 import frc.robot.ColgadorCmd.colgador2inv;
-import frc.robot.Commands.onepiece;
-import frc.robot.Commands.pieceOut;
-import frc.robot.Commands.tridente;
-import frc.robot.Commands.twopieces;
 import frc.robot.IntakeCmd.comintake;
 import frc.robot.IntakeCmd.composintake;
 import frc.robot.LimelightCmd.setangle;
@@ -54,19 +51,13 @@ public class RobotContainer {
   public CommandXboxController driverjoytick = new CommandXboxController(0);
   public CommandXboxController mechjoytick = new CommandXboxController(1);
 
-  private final Command onepiece = new onepiece(mecanum, posoutake, intake, moutake, posintake);
-
-  private final Command twopieces = new twopieces(mecanum, posoutake, intake, moutake, posintake);
-
-  private final Command threepieces = new tridente(mecanum, posoutake, intake, moutake, posintake);
-
-  private final Command pieceOut = new pieceOut(mecanum, posoutake, intake, moutake, posintake);
-
   private final Command outexit = new outexit(intake, moutake, mecanum, limelight, posoutake);
 
   private final Command outexitder = new outexitder(intake, moutake, mecanum, limelight, posoutake);
 
   private final Command outexitizq = new outexitizq(intake, moutake, mecanum, limelight, posoutake);
+
+  private final Command kickPiecesCmd = new kickPieces(mecanum);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -76,8 +67,7 @@ public class RobotContainer {
     m_chooser.addOption("1PZ EXIT LEFT", outexitizq);
     m_chooser.setDefaultOption("1PZ EXIT MIDDLE", outexit);
    
-    SmartDashboard.putData(m_chooser);
-    //limelight.getDefaultCommand(); 
+    SmartDashboard.putData(m_chooser); 
   
     driverobot cmdDriverobot = new driverobot(mecanum,
 
@@ -147,7 +137,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    return kickPiecesCmd;
   }
   
 } 
