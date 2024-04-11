@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Autos.ampdospieces;
 import frc.robot.Autos.autoampazul;
 import frc.robot.Autos.autoamprojo;
 import frc.robot.Autos.kickPieces;
@@ -65,6 +66,8 @@ public class RobotContainer {
 
   private final Command autoampazul = new autoampazul(intake, moutake, mecanum, posoutake);
 
+  private final Command autoamp_doble = new ampdospieces(intake, moutake, mecanum, posoutake, posintake);
+
 
   SendableChooser<Command> m_chooser = new SendableChooser<>(); //for autonomous
  
@@ -73,9 +76,10 @@ public class RobotContainer {
     m_chooser.setDefaultOption("1PZ EXIT MIDDLE", outexit);
     m_chooser.addOption("1PZ EXIT RIGHT", outexitder);
     m_chooser.addOption("1PZ EXIT LEFT", outexitizq);
-    m_chooser.addOption("AMP ROJO", autoamprojo);
-    m_chooser.addOption("AMP AZUL", autoampazul);
+    m_chooser.addOption("1PZ AMP ROJO", autoamprojo);
+    m_chooser.addOption("1PZ AMP AZUL", autoampazul);
     m_chooser.addOption("KICKPIECES", kickPiecesCmd);
+    m_chooser.addOption("2PZ AMP ROJO", autoamp_doble);
     
    
     SmartDashboard.putData(m_chooser); 

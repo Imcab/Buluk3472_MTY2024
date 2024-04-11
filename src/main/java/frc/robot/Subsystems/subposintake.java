@@ -26,11 +26,11 @@ public class subposintake extends SubsystemBase{
     double kD = 0.0;
     int encBits ;
     double angulo_encoder;
-    double offset_encoder = 115;
+    double offset_encoder = 205;
     
     public subposintake(){
         m_posintake = new CANSparkMax(posintid, MotorType.kBrushless);
-        encoderIntake = new AnalogInput(0);
+        encoderIntake = new AnalogInput(2);
         PIDintake = new PIDController(kP, kI, kD);
     }
 

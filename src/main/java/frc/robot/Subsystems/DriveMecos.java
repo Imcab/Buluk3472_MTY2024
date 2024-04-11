@@ -32,7 +32,7 @@ public class DriveMecos extends SubsystemBase{
     double kD = 0.001;
 
     AHRS NavX;
-    double NavxOFFSET = 0;
+    double NavxOFFSET = 182.9;
 
     public DriveMecos(){
 

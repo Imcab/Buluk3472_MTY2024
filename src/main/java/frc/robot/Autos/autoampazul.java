@@ -41,7 +41,7 @@ public class autoampazul extends Command{
         System.out.println("mytime"+mytime);
 
         if (mytime >= 0.0 && mytime <0.9){
-            chasis.mecanumauto(-0.4, 0.41, 0.4, -0.41);
+            chasis.mecanumauto(-0.25, 0.26, 0.25, -0.26);
             
         }
         else if (mytime >= 0.9 && mytime <1.0){
@@ -52,13 +52,16 @@ public class autoampazul extends Command{
         }
         else if (mytime >= 3.0 && mytime <4.0){
             outpos.position_outake(243);
+            chasis.tankauto(-0.08, -0.19);
             
         }
         else if (mytime >= 4.0 && mytime <4.5){
             outake.amp(-0.2, -0.7);
+            
         }
         else if (mytime >= 4.5 && mytime <4.6){
             outpos.setposspeed(0);
+            chasis.tankauto(0, 0);
         }
         else if (mytime >= 4.6 && mytime <5.2){
             outpos.position_outake(90);

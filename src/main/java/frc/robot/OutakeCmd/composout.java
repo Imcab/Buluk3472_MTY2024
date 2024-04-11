@@ -29,7 +29,7 @@ public class composout extends Command{
             speedpos = 0;
         }
 
-        posoutake.setposspeed(speedpos * 0.15);
+        posoutake.setposspeed(speedpos * 0.3);
     }
 
     @Override

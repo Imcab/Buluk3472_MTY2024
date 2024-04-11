@@ -1,6 +1,5 @@
-/* 
 
-package frc.robot.Commands;
+package frc.robot.IntakeCmd;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -52,4 +51,3 @@ public class BOOSTintake extends Command{
         return false;
     }
 }
-*/

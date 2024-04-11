@@ -61,9 +61,9 @@ public class limelight extends SubsystemBase{
     @Override
     public void periodic(){
 
-        SmartDashboard.putNumber("LimelightX", getX());
+        //SmartDashboard.putNumber("LimelightX", getX());
         SmartDashboard.putNumber("LimelightY",getY());
-        SmartDashboard.putNumber("LimelightArea", getArea());
+        //SmartDashboard.putNumber("LimelightArea", getArea());
         SmartDashboard.putBoolean("Target", targetfound()); //:v
     }
     
